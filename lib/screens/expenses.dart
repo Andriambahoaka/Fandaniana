@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../widgets/reusable_card.dart';
+
 class Expense extends StatelessWidget {
   const Expense({Key? key}) : super(key: key);
 
@@ -13,7 +15,7 @@ class Expense extends StatelessWidget {
           height: 60,
           child: Icon(
             Icons.add,
-            size: 35,
+            size: 34,
           ),
           decoration: BoxDecoration(
               shape: BoxShape.circle,
@@ -26,7 +28,41 @@ class Expense extends StatelessWidget {
         ),
         onPressed: () {},
       ),
-      body: Column(),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          ReusableCard(
+            height: 130.0,
+            colour: Colors.orangeAccent,
+            cardChild: Text('Balance'),
+          ),
+          Row(
+            children: [
+              Expanded(
+                child: ReusableCard(
+                  height: 90.0,
+                  colour: Colors.blueGrey,
+                  cardChild: Text('Balance'),
+                ),
+              ),
+              Expanded(
+                child: ReusableCard(
+                  height: 90.0,
+                  colour: Colors.blueGrey,
+                  cardChild: Text('Balance'),
+                ),
+              ),
+            ],
+          ),
+          Expanded(
+            child: ReusableCard(
+              height: 30.0,
+              colour: Colors.white,
+              cardChild: Text('Balance'),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
