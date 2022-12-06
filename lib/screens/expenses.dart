@@ -82,39 +82,141 @@ class Expense extends StatelessWidget {
               ),
             ],
           ),
-          ReusableCard(
-            height: 130.0,
-            colour: Colors.orangeAccent,
-            cardChild: Text('Balance'),
+          Stack(
+            children: [
+              ReusableCard(
+                padding: EdgeInsets.only(left: 10, right: 5),
+                height: 130.0,
+                colour: Colors.orangeAccent,
+                cardChild: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Income',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontFamily: 'Valera',
+                            fontSize: 30.0,
+                          ),
+                        ),
+                        Text(
+                          'Ar4200 ',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontFamily: 'Bebas Neue',
+                            fontSize: 35.0,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              Positioned(
+                bottom: 6,
+                left: 230,
+                child: Container(
+                  child: Image.asset(
+                    'images/wallet_.png',
+                    width: 135,
+                    height: 155,
+                  ),
+                ),
+              ),
+            ],
           ),
           Row(
             children: [
               Expanded(
                 child: ReusableCard(
+                  padding: EdgeInsets.only(left: 20, right: 10),
                   height: 90.0,
                   colour: Color(0xff918abe),
                   cardChild: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('Balance'),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Income',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontFamily: 'Valera',
+                              fontSize: 20.0,
+                            ),
+                          ),
+                          Text(
+                            'Ar 4200 ',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontFamily: 'Bebas Neue',
+                              fontSize: 25.0,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Image.asset(
+                        'images/income.png',
+                        width: 60,
+                        height: 100,
+                      ),
                     ],
                   ),
                 ),
               ),
               Expanded(
                 child: ReusableCard(
+                  padding: EdgeInsets.only(left: 10, right: 5),
                   height: 90.0,
                   colour: Color(0xffff5959),
-                  cardChild: Text('Balance'),
+                  cardChild: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Expense',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontFamily: 'Valera',
+                              fontSize: 20.0,
+                            ),
+                          ),
+                          Text(
+                            '- Ar 4200 ',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontFamily: 'Bebas Neue',
+                              fontSize: 25.0,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Image.asset(
+                        'images/expense.png',
+                        width: 50,
+                        height: 100,
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],
           ),
           Expanded(
             child: ReusableCard(
+              padding: EdgeInsets.only(left: 10, right: 5),
               height: 30.0,
               colour: Colors.white,
-              cardChild: Text('Balance'),
+              cardChild: Text(''),
             ),
           ),
         ],
