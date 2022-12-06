@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../utilities/constants.dart';
 import '../widgets/reusable_card.dart';
 
 class Expense extends StatelessWidget {
@@ -85,7 +86,7 @@ class Expense extends StatelessWidget {
           Stack(
             children: [
               ReusableCard(
-                padding: EdgeInsets.only(left: 10, right: 5),
+                padding: EdgeInsets.only(left: 20, right: 5),
                 height: 130.0,
                 colour: Colors.orangeAccent,
                 cardChild: Row(
@@ -133,7 +134,7 @@ class Expense extends StatelessWidget {
             children: [
               Expanded(
                 child: ReusableCard(
-                  padding: EdgeInsets.only(left: 20, right: 10),
+                  padding: EdgeInsets.only(left: 10, right: 5),
                   height: 90.0,
                   colour: Color(0xff918abe),
                   cardChild: Row(
@@ -145,19 +146,11 @@ class Expense extends StatelessWidget {
                         children: [
                           Text(
                             'Income',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontFamily: 'Valera',
-                              fontSize: 20.0,
-                            ),
+                            style: kLabelTextStyle,
                           ),
                           Text(
                             'Ar 4200 ',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontFamily: 'Bebas Neue',
-                              fontSize: 25.0,
-                            ),
+                            style: kAmountTextStyle,
                           ),
                         ],
                       ),
@@ -184,19 +177,11 @@ class Expense extends StatelessWidget {
                         children: [
                           Text(
                             'Expense',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontFamily: 'Valera',
-                              fontSize: 20.0,
-                            ),
+                            style: kLabelTextStyle,
                           ),
                           Text(
                             '- Ar 4200 ',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontFamily: 'Bebas Neue',
-                              fontSize: 25.0,
-                            ),
+                            style: kAmountTextStyle,
                           ),
                         ],
                       ),
