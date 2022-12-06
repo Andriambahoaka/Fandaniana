@@ -97,20 +97,12 @@ class Expense extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Income',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontFamily: 'Valera',
-                            fontSize: 30.0,
-                          ),
+                          'Balance',
+                          style: kLabelTextStyle.copyWith(fontSize: 30.0),
                         ),
                         Text(
                           'Ar4200 ',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontFamily: 'Bebas Neue',
-                            fontSize: 35.0,
-                          ),
+                          style: kAmountTextStyle.copyWith(fontSize: 35.0),
                         ),
                       ],
                     ),
@@ -118,13 +110,16 @@ class Expense extends StatelessWidget {
                 ),
               ),
               Positioned(
-                bottom: 6,
+                bottom: 2,
                 left: 230,
-                child: Container(
-                  child: Image.asset(
-                    'images/wallet_.png',
-                    width: 135,
-                    height: 155,
+                child: FittedBox(
+                  fit: BoxFit.none,
+                  child: Container(
+                    child: Image.asset(
+                      'images/wallet_.png',
+                      width: 135,
+                      height: 155,
+                    ),
                   ),
                 ),
               ),
@@ -201,7 +196,49 @@ class Expense extends StatelessWidget {
               padding: EdgeInsets.only(left: 10, right: 5),
               height: 30.0,
               colour: Colors.white,
-              cardChild: Text(''),
+              cardChild: Column(
+                children: [
+                  ListTile(
+                    leading: Text(
+                      'Today',
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20.0),
+                    ),
+                    title: Text(
+                      'Today',
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20.0),
+                    ),
+                    trailing: Text(
+                      'Today',
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20.0),
+                    ),
+                  ),
+                  ListTile(
+                    leading: Image.asset(
+                      "images/hamburger.png",
+                    ),
+                    title: Text(
+                      'Food',
+                      style: TextStyle(color: Colors.black, fontSize: 20.0),
+                    ),
+                    trailing: Text(
+                      '5000 ar',
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20.0),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ],
