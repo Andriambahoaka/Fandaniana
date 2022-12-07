@@ -1,9 +1,9 @@
 import 'package:fandaniana/models/expense_summary.dart';
 
-import 'depense.dart';
+import 'expense.dart';
 
 class Overall {
   Overall(this.summary, this.depenseList);
   final ExpenseSummary summary;
-  final List<Depense> depenseList;
+  final List<Expense> depenseList;
 }

@@ -1,4 +1,4 @@
-import 'package:fandaniana/screens/expenseScreen.dart';
+import 'package:fandaniana/screens/dashboardScreen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
