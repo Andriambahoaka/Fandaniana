@@ -1,3 +1,4 @@
+import 'package:fandaniana/widgets/expense_tile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -193,14 +194,14 @@ class Expense extends StatelessWidget {
           ),
           Expanded(
             child: ReusableCard(
-              padding: EdgeInsets.only(left: 10, right: 5),
+              padding: EdgeInsets.all(0),
               height: 30.0,
               colour: Colors.white,
               cardChild: Column(
                 children: [
                   ListTile(
                     leading: Text(
-                      'Today',
+                      '',
                       style: TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.bold,
@@ -214,29 +215,16 @@ class Expense extends StatelessWidget {
                           fontSize: 20.0),
                     ),
                     trailing: Text(
-                      'Today',
+                      '- AR 400',
                       style: TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.bold,
                           fontSize: 20.0),
                     ),
                   ),
-                  ListTile(
-                    leading: Image.asset(
-                      "images/hamburger.png",
-                    ),
-                    title: Text(
-                      'Food',
-                      style: TextStyle(color: Colors.black, fontSize: 20.0),
-                    ),
-                    trailing: Text(
-                      '5000 ar',
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20.0),
-                    ),
-                  ),
+                  ExpenseTile('Food', 'hamburger', 500.0),
+                  ExpenseTile('Drinks', 'drinks', 1000.0),
+                  ExpenseTile('Food', 'hamburger', 500.0),
                 ],
               ),
             ),
