@@ -1,30 +1,29 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../models/depense.dart';
 import '../utilities/constants.dart';
 
 class ExpenseTile extends StatelessWidget {
-  ExpenseTile(this.type, this.image, this.price);
+  ExpenseTile(this.depense);
 
-  final String type;
-  final String image;
-  final double price;
+  final Depense depense;
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
       leading: Image.asset(
-        "images/$image.png",
+        "images/${depense.imageName}.png",
         height: 45,
       ),
       title: Text(
-        type,
+        depense.type,
         style: kLabelTextStyle.copyWith(
           color: Colors.black,
         ),
       ),
       trailing: Text(
-        '- Ar $price',
+        '- Ar ${depense.price}',
         style: kLabelTextStyle.copyWith(
           color: Colors.black,
         ),

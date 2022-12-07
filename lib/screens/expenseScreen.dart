@@ -1,12 +1,13 @@
-import 'package:fandaniana/widgets/expense_tile.dart';
+import 'package:fandaniana/widgets/overall_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../utilities/constants.dart';
+
 import '../widgets/reusable_card.dart';
 
-class Expense extends StatelessWidget {
-  const Expense({Key? key}) : super(key: key);
+class ExpenseScreen extends StatelessWidget {
+  const ExpenseScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -197,36 +198,7 @@ class Expense extends StatelessWidget {
               padding: EdgeInsets.all(0),
               height: 30.0,
               colour: Colors.white,
-              cardChild: Column(
-                children: [
-                  ListTile(
-                    leading: Text(
-                      '',
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20.0),
-                    ),
-                    title: Text(
-                      'Today',
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20.0),
-                    ),
-                    trailing: Text(
-                      '- AR 400',
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20.0),
-                    ),
-                  ),
-                  ExpenseTile('Food', 'hamburger', 500.0),
-                  ExpenseTile('Drinks', 'drinks', 1000.0),
-                  ExpenseTile('Food', 'hamburger', 500.0),
-                ],
-              ),
+              cardChild: OverallList(),
             ),
           ),
         ],

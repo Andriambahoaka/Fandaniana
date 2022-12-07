@@ -1,8 +1,8 @@
-import 'package:fandaniana/screens/expenses.dart';
+import 'package:fandaniana/screens/expenseScreen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -11,8 +11,8 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: SafeArea(child: Expense()),
+    return MaterialApp(
+      home: SafeArea(child: ExpenseScreen()),
     );
   }
 }
