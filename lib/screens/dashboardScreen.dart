@@ -1,3 +1,4 @@
+import 'package:fandaniana/screens/addExpenseScreen.dart';
 import 'package:fandaniana/widgets/overall_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +32,14 @@ class ExpenseScreen extends StatelessWidget {
                   tileMode: TileMode.clamp,
                   colors: [Color(0xffc8708a), Colors.red])),
         ),
-        onPressed: () {},
+        onPressed: () {
+          showModalBottomSheet(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(25.0),
+              ),
+              context: context,
+              builder: (context) => AddExpenseScreen());
+        },
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
