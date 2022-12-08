@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../models/expense.dart';
 import '../utilities/constants.dart';
+import 'overall_list.dart';
 
 class ExpenseTile extends StatelessWidget {
   ExpenseTile(this.depense);
@@ -30,7 +31,11 @@ class ExpenseTile extends StatelessWidget {
         ),
         onTap: () {
           showModalBottomSheet(
-              context: context, builder: (context) => Container());
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(25.0),
+              ),
+              context: context,
+              builder: (context) => Container(child: OverallList()));
         });
   }
 }

@@ -11,3 +11,10 @@ const kLabelTextStyle = TextStyle(
   fontFamily: 'Valera',
   fontSize: 20.0,
 );
+
+const kHeadTextStyle = TextStyle(
+  color: Colors.black,
+  fontFamily: 'Valera',
+  fontWeight: FontWeight.bold,
+  fontSize: 19.0,
+);

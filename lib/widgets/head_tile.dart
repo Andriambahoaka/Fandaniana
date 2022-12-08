@@ -16,13 +16,11 @@ class HeadTile extends StatelessWidget {
       ),
       title: Text(
         date,
-        style: kLabelTextStyle.copyWith(
-            color: Colors.black, fontWeight: FontWeight.bold),
+        style: kHeadTextStyle,
       ),
       trailing: Text(
         '- AR $total',
-        style: kLabelTextStyle.copyWith(
-            color: Colors.black, fontWeight: FontWeight.bold),
+        style: kHeadTextStyle,
       ),
     );
   }
