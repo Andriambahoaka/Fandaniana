@@ -1,6 +1,7 @@
 import 'package:fandaniana/utilities/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class AddExpenseScreen extends StatelessWidget {
   const AddExpenseScreen({Key? key}) : super(key: key);
@@ -8,12 +9,13 @@ class AddExpenseScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 20.0, left: 25.0, right: 25.0),
+      margin: EdgeInsets.only(
+        top: 20.0,
+        left: 20.0,
+        right: 20.0,
+      ),
       child: Column(
         children: [
-          SizedBox(
-            height: 15.0,
-          ),
           Align(
             alignment: Alignment.centerLeft,
             child: Text(
@@ -37,7 +39,7 @@ class AddExpenseScreen extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 20.0,
+            height: 20,
           ),
           Align(
             alignment: Alignment.centerLeft,
@@ -52,33 +54,93 @@ class AddExpenseScreen extends StatelessWidget {
                 borderSide: BorderSide(width: 2, color: Colors.blueGrey),
               ),
             ),
+            autofocus: true,
             onChanged: (value) {},
           ),
+          SizedBox(
+            height: 20,
+          ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               SizedBox(
-                width: 150.0,
-                child: TextField(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderSide: BorderSide(width: 2, color: Colors.blueGrey),
+                width: 240.0,
+                child: Column(
+                  children: [
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Price : ',
+                        style: kHeadTextStyle.copyWith(
+                            fontWeight: FontWeight.w100),
+                      ),
                     ),
-                  ),
-                  onChanged: (value) {},
+                    TextField(
+                      keyboardType: TextInputType.number,
+                      inputFormatters: <TextInputFormatter>[
+                        FilteringTextInputFormatter.digitsOnly
+                      ],
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                          borderSide:
+                              BorderSide(width: 2, color: Colors.blueGrey),
+                        ),
+                      ),
+                      onChanged: (value) {},
+                    ),
+                  ],
                 ),
               ),
               SizedBox(
-                width: 150.0,
-                child: TextField(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderSide: BorderSide(width: 2, color: Colors.blueGrey),
+                width: 100.0,
+                child: Column(
+                  children: [
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Amount : ',
+                        style: kHeadTextStyle.copyWith(
+                            fontWeight: FontWeight.w100),
+                      ),
                     ),
-                  ),
-                  onChanged: (value) {},
+                    TextField(
+                      keyboardType: TextInputType.number,
+                      inputFormatters: <TextInputFormatter>[
+                        FilteringTextInputFormatter.digitsOnly
+                      ],
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                          borderSide:
+                              BorderSide(width: 6, color: Colors.blueGrey),
+                        ),
+                      ),
+                      onChanged: (value) {},
+                    ),
+                  ],
                 ),
               ),
             ],
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          TextButton.icon(
+            onPressed: () {},
+            label: Text(
+              'Add',
+              style: kHeadTextStyle.copyWith(color: Colors.white),
+            ),
+            style: TextButton.styleFrom(
+              backgroundColor: Colors.teal, // Text Color
+              minimumSize: const Size.fromHeight(50),
+            ),
+            icon: Icon(
+              Icons.add,
+              color: Colors.white,
+            ),
+          ),
+          SizedBox(
+            height: 20,
           ),
         ],
       ),

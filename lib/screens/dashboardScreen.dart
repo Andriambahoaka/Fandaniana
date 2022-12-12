@@ -38,7 +38,13 @@ class ExpenseScreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(25.0),
               ),
               context: context,
-              builder: (context) => AddExpenseScreen());
+              isScrollControlled: true,
+              builder: (context) => SingleChildScrollView(
+                    padding: EdgeInsets.only(
+                      bottom: MediaQuery.of(context).viewInsets.bottom,
+                    ),
+                    child: AddExpenseScreen(),
+                  ));
         },
       ),
       body: Column(
