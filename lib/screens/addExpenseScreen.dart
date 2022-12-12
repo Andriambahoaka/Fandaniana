@@ -1,10 +1,18 @@
+import 'package:fandaniana/dao/expense_dao.dart';
 import 'package:fandaniana/utilities/constants.dart';
+import 'package:fandaniana/widgets/type_expense_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../widgets/type_expense_card.dart';
+
 class AddExpenseScreen extends StatelessWidget {
   const AddExpenseScreen({Key? key}) : super(key: key);
+
+  List<TypeExpenseCard> _buildRowList() {
+    return ExpenseDao.typeExpenses;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,16 +34,7 @@ class AddExpenseScreen extends StatelessWidget {
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
-              children: [
-                TypeExpenseCard('hamburger'),
-                TypeExpenseCard('house'),
-                TypeExpenseCard('shirt'),
-                TypeExpenseCard('drinks'),
-                TypeExpenseCard('hamburger'),
-                TypeExpenseCard('house'),
-                TypeExpenseCard('shirt'),
-                TypeExpenseCard('drinks'),
-              ],
+              children: _buildRowList(),
             ),
           ),
           SizedBox(
@@ -63,62 +62,8 @@ class AddExpenseScreen extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              SizedBox(
-                width: 240.0,
-                child: Column(
-                  children: [
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        'Price : ',
-                        style: kHeadTextStyle.copyWith(
-                            fontWeight: FontWeight.w100),
-                      ),
-                    ),
-                    TextField(
-                      keyboardType: TextInputType.number,
-                      inputFormatters: <TextInputFormatter>[
-                        FilteringTextInputFormatter.digitsOnly
-                      ],
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderSide:
-                              BorderSide(width: 2, color: Colors.blueGrey),
-                        ),
-                      ),
-                      onChanged: (value) {},
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                width: 100.0,
-                child: Column(
-                  children: [
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        'Amount : ',
-                        style: kHeadTextStyle.copyWith(
-                            fontWeight: FontWeight.w100),
-                      ),
-                    ),
-                    TextField(
-                      keyboardType: TextInputType.number,
-                      inputFormatters: <TextInputFormatter>[
-                        FilteringTextInputFormatter.digitsOnly
-                      ],
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderSide:
-                              BorderSide(width: 6, color: Colors.blueGrey),
-                        ),
-                      ),
-                      onChanged: (value) {},
-                    ),
-                  ],
-                ),
-              ),
+              NumberTextField(240.0, 'Price'),
+              NumberTextField(100.0, 'Amount')
             ],
           ),
           SizedBox(
@@ -148,26 +93,38 @@ class AddExpenseScreen extends StatelessWidget {
   }
 }
 
-class TypeExpenseCard extends StatelessWidget {
-  TypeExpenseCard(this.imageName);
+class NumberTextField extends StatelessWidget {
+  NumberTextField(this.width, this.label);
 
-  String imageName;
-
+  final double width;
+  final String label;
   @override
   Widget build(BuildContext context) {
-    return Card(
-      semanticContainer: true,
-      clipBehavior: Clip.antiAliasWithSaveLayer,
-      child: Image.asset(
-        'images/$imageName.png',
-        width: 45.0,
-        height: 45.0,
+    return SizedBox(
+      width: width,
+      child: Column(
+        children: [
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Text(
+              '$label : ',
+              style: kHeadTextStyle.copyWith(fontWeight: FontWeight.w100),
+            ),
+          ),
+          TextField(
+            keyboardType: TextInputType.number,
+            inputFormatters: <TextInputFormatter>[
+              FilteringTextInputFormatter.digitsOnly
+            ],
+            decoration: InputDecoration(
+              border: OutlineInputBorder(
+                borderSide: BorderSide(width: 2, color: Colors.blueGrey),
+              ),
+            ),
+            onChanged: (value) {},
+          ),
+        ],
       ),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10.0),
-      ),
-      elevation: 5,
-      margin: EdgeInsets.all(10),
     );
   }
 }
