@@ -49,6 +49,14 @@ class AddExpenseScreen extends StatelessWidget {
           ),
           TextField(
             decoration: InputDecoration(
+              suffixIcon: Padding(
+                padding: EdgeInsetsDirectional.only(end: 12.0),
+                child: Image.asset(
+                  'images/car.png',
+                  width: 45.0,
+                  height: 45.0,
+                ),
+              ),
               border: OutlineInputBorder(
                 borderSide: BorderSide(width: 2, color: Colors.blueGrey),
               ),

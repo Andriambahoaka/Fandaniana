@@ -14,7 +14,7 @@ class TypeExpenseCard extends StatelessWidget {
     return MyTooltip(
         message: typeExpense.type,
         child: Card(
-          color: Colors.teal,
+          color: Colors.white,
           semanticContainer: true,
           clipBehavior: Clip.antiAliasWithSaveLayer,
           child: Image.asset(
