@@ -1,5 +1,5 @@
 import 'package:fandaniana/screens/addExpenseScreen.dart';
-import 'package:fandaniana/widgets/overall_list.dart';
+import 'package:fandaniana/widgets/daily_expense_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -212,7 +212,7 @@ class ExpenseScreen extends StatelessWidget {
               padding: EdgeInsets.all(0),
               height: 30.0,
               colour: Colors.white,
-              cardChild: OverallList(),
+              cardChild: DailyExpenseList(),
             ),
           ),
         ],

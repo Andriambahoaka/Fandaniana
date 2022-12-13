@@ -3,7 +3,7 @@ import 'package:fandaniana/widgets/expense_list.dart';
 import 'package:fandaniana/widgets/head_tile.dart';
 import 'package:flutter/cupertino.dart';
 
-class OverallList extends StatelessWidget {
+class DailyExpenseList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
@@ -11,7 +11,7 @@ class OverallList extends StatelessWidget {
           final overall = ExpenseDao.overalls[index];
           return Column(
             children: [
-              HeadTile(overall.summary.date, overall.summary.total),
+              HeadTile(overall.date, overall.total),
               ExpenseList(overall.depenseList),
             ],
           );

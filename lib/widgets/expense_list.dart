@@ -2,12 +2,12 @@ import 'package:fandaniana/widgets/expense_tile.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../dao/expense_dao.dart';
-import '../models/expense.dart';
+import '../models/total_by_typeexpense.dart';
 
 class ExpenseList extends StatelessWidget {
   ExpenseList(this.expenses);
 
-  List<Expense> expenses;
+  List<TotalByTypeExpense> expenses;
 
   @override
   Widget build(BuildContext context) {
