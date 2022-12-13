@@ -1,4 +1,5 @@
 import 'package:fandaniana/dao/expense_dao.dart';
+import 'package:fandaniana/utilities/constants.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../models/expense.dart';
@@ -8,57 +9,6 @@ class ExpenseList extends StatelessWidget {
 
   final int idDailyExpense;
   final int idTypeExpense;
-
-  List<TableRow> _buildRowList() {
-    List<Expense> expenses =
-        ExpenseDao.getListDailyExpenseByType(idDailyExpense, idTypeExpense);
-    //List<Expense> expenses = ExpenseDao.expenses;
-
-    List<TableRow> result = [];
-
-    result.add(TableRow(
-      children: <Widget>[
-        Container(
-          padding: EdgeInsets.only(left: 15.0),
-          child: Text('Designation'),
-          height: 30.0,
-        ),
-        Container(
-          padding: EdgeInsets.only(left: 15.0),
-          child: Text('Price'),
-          height: 30.0,
-        ),
-        Container(
-          padding: EdgeInsets.only(left: 15.0),
-          child: Text('Amount'),
-          height: 30.0,
-        ),
-      ],
-    ));
-
-    expenses.forEach((element) {
-      result.add(TableRow(
-        children: <Widget>[
-          Container(
-            padding: EdgeInsets.only(left: 15.0),
-            child: Text(element.designation),
-            height: 30.0,
-          ),
-          Container(
-            padding: EdgeInsets.only(left: 15.0),
-            child: Text('${element.unitPrice}'),
-            height: 30.0,
-          ),
-          Container(
-            padding: EdgeInsets.only(left: 15.0),
-            child: Text('${element.amount}'),
-            height: 30.0,
-          ),
-        ],
-      ));
-    });
-    return result;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -79,6 +29,51 @@ class ExpenseList extends StatelessWidget {
           children: _buildRowList(),
         ),
       ],
+    );
+  }
+
+  List<TableRow> _buildRowList() {
+    List<Expense> expenses =
+        ExpenseDao.getListDailyExpenseByType(idDailyExpense, idTypeExpense);
+    //List<Expense> expenses = ExpenseDao.expenses;
+
+    List<TableRow> result = [];
+
+    result.add(TableRow(
+      children: <Widget>[
+        TableColumnExpense('Designation'),
+        TableColumnExpense('price'),
+        TableColumnExpense('Amount'),
+      ],
+    ));
+
+    expenses.forEach((element) {
+      result.add(TableRow(
+        children: <Widget>[
+          TableColumnExpense('${element.designation}'),
+          TableColumnExpense('${element.unitPrice}'),
+          TableColumnExpense('${element.amount}'),
+        ],
+      ));
+    });
+    return result;
+  }
+}
+
+class TableColumnExpense extends StatelessWidget {
+  TableColumnExpense(this.columnText);
+
+  final String columnText;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.only(left: 15.0),
+      child: Text(
+        columnText,
+        style: kLabelTextStyle,
+      ),
+      height: 30.0,
     );
   }
 }

@@ -18,41 +18,41 @@ class ExpenseDao {
   static List<TotalByTypeExpense> totalByType = [
     TotalByTypeExpense(1, TypeExpense(1, 'Food', 'food'), 500.0),
     TotalByTypeExpense(2, TypeExpense(2, 'Car', 'car'), 600.0),
-    TotalByTypeExpense(3, TypeExpense(3, 'House', 'house'), 600.0),
+    TotalByTypeExpense(3, TypeExpense(6, 'House', 'house'), 600.0),
   ];
 
   static List<DailyExpense> overalls = [
-    DailyExpense(1, 'Today', 1400.0, totalByType),
-    DailyExpense(2, '12/02/2013', 1400.0, totalByType),
-    DailyExpense(3, '12/02/2013', 1400.0, totalByType),
+    DailyExpense(1, 'Today', 1400.0),
+    DailyExpense(2, '12/02/2013', 1400.0),
+    DailyExpense(3, '12/02/2013', 1400.0),
   ];
 
   static List<Expense> expenses = [
     Expense(
         idExpense: 1,
         idDailyExpense: 1,
-        idTypeExpense: 1,
+        typeExpense: TypeExpense(1, 'Food', 'food'),
         designation: "Nem",
         unitPrice: 300.0,
         amount: 3),
     Expense(
         idExpense: 1,
         idDailyExpense: 1,
-        idTypeExpense: 1,
+        typeExpense: TypeExpense(1, 'Food', 'food'),
         designation: "Sandwich",
         unitPrice: 1000.0,
         amount: 1),
     Expense(
         idExpense: 1,
         idDailyExpense: 2,
-        idTypeExpense: 2,
+        typeExpense: TypeExpense(2, 'Car', 'car'),
         designation: "Gasoil",
         unitPrice: 15000.0,
         amount: 1),
     Expense(
         idExpense: 1,
         idDailyExpense: 2,
-        idTypeExpense: 6,
+        typeExpense: TypeExpense(6, 'House', 'house'),
         designation: "Jirama",
         unitPrice: 20000.0,
         amount: 1),
@@ -70,7 +70,7 @@ class ExpenseDao {
     return expenses
         .where((element) =>
             element.idDailyExpense == idDaily &&
-            element.idTypeExpense == idType)
+            element.typeExpense.idTypeExpense == idType)
         .toList();
   }
 

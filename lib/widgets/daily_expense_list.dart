@@ -12,7 +12,7 @@ class DailyExpenseList extends StatelessWidget {
           return Column(
             children: [
               HeadTile(overall.date, overall.total),
-              TotalByTypeExpenseList(overall.depenseList),
+              TotalByTypeExpenseList(),
             ],
           );
         },
