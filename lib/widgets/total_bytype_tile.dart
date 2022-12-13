@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 import '../models/total_by_typeexpense.dart';
 import '../utilities/constants.dart';
 import 'daily_expense_list.dart';
-import 'expense_tile.dart';
+import 'expense_list.dart';
+import 'expense_table_row.dart';
 
 class TotalByTypeExpenseTile extends StatelessWidget {
   TotalByTypeExpenseTile(this.totalByType);
@@ -37,7 +38,10 @@ class TotalByTypeExpenseTile extends StatelessWidget {
                 borderRadius: BorderRadius.circular(25.0),
               ),
               context: context,
-              builder: (context) => Container(child: ExpenseTile()));
+              builder: (context) => SingleChildScrollView(
+                    child: ExpenseList(totalByType.idDailyExpense,
+                        totalByType.typeExpense.idTypeExpense),
+                  ));
         });
   }
 }

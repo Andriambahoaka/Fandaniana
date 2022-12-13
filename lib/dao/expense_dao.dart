@@ -16,9 +16,9 @@ class ExpenseDao {
   ];
 
   static List<TotalByTypeExpense> totalByType = [
-    TotalByTypeExpense(TypeExpense(1, 'Food', 'food'), 500.0),
-    TotalByTypeExpense(TypeExpense(2, 'Car', 'car'), 600.0),
-    TotalByTypeExpense(TypeExpense(3, 'House', 'house'), 600.0),
+    TotalByTypeExpense(1, TypeExpense(1, 'Food', 'food'), 500.0),
+    TotalByTypeExpense(2, TypeExpense(2, 'Car', 'car'), 600.0),
+    TotalByTypeExpense(3, TypeExpense(3, 'House', 'house'), 600.0),
   ];
 
   static List<DailyExpense> overalls = [
@@ -64,6 +64,14 @@ class ExpenseDao {
       result.add(TypeExpenseCard(element));
     });
     return result;
+  }
+
+  static List<Expense> getListDailyExpenseByType(int idDaily, int idType) {
+    return expenses
+        .where((element) =>
+            element.idDailyExpense == idDaily &&
+            element.idTypeExpense == idType)
+        .toList();
   }
 
   static int get expenseCount {
