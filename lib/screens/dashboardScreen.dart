@@ -15,38 +15,7 @@ class ExpenseScreen extends StatelessWidget {
     List<String> list = <String>['JANOARY', 'FEBROARY', 'MARTSA', 'APRILY'];
     String dropdownValue = list.first;
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        child: Container(
-          width: 60,
-          height: 60,
-          child: Icon(
-            Icons.add,
-            size: 34,
-          ),
-          decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              gradient: LinearGradient(
-                  begin: Alignment.centerLeft,
-                  end: Alignment.centerRight,
-                  stops: [0.1, 1.0],
-                  tileMode: TileMode.clamp,
-                  colors: [Color(0xffc8708a), Colors.red])),
-        ),
-        onPressed: () {
-          showModalBottomSheet(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(25.0),
-              ),
-              context: context,
-              isScrollControlled: true,
-              builder: (context) => SingleChildScrollView(
-                    padding: EdgeInsets.only(
-                      bottom: MediaQuery.of(context).viewInsets.bottom,
-                    ),
-                    child: AddExpenseScreen(),
-                  ));
-        },
-      ),
+      floatingActionButton: AddingButton(),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -217,6 +186,48 @@ class ExpenseScreen extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class AddingButton extends StatelessWidget {
+  const AddingButton({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return FloatingActionButton(
+      child: Container(
+        width: 60,
+        height: 60,
+        child: Icon(
+          Icons.add,
+          size: 34,
+        ),
+        decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            gradient: LinearGradient(
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
+                stops: [0.1, 1.0],
+                tileMode: TileMode.clamp,
+                colors: [Color(0xffc8708a), Colors.red])),
+      ),
+      onPressed: () {
+        showModalBottomSheet(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(25.0),
+            ),
+            context: context,
+            isScrollControlled: true,
+            builder: (context) => SingleChildScrollView(
+                  padding: EdgeInsets.only(
+                    bottom: MediaQuery.of(context).viewInsets.bottom,
+                  ),
+                  child: AddExpenseScreen(),
+                ));
+      },
     );
   }
 }

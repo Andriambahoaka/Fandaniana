@@ -11,7 +11,7 @@ class AddExpenseScreen extends StatelessWidget {
   const AddExpenseScreen({Key? key}) : super(key: key);
 
   List<TypeExpenseCard> _buildRowList() {
-    return ExpenseDao.typeExpenses;
+    return ExpenseDao.getListExpenseCard();
   }
 
   @override

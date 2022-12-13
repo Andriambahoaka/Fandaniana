@@ -1,4 +1,4 @@
-import 'package:fandaniana/widgets/expense_tile.dart';
+import 'package:fandaniana/widgets/total_bytype_tile.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../dao/expense_dao.dart';
@@ -14,7 +14,7 @@ class ExpenseList extends StatelessWidget {
     return ListView.builder(
       itemBuilder: (context, index) {
         final expense = expenses[index];
-        return ExpenseTile(expense);
+        return TotalByTypeExpenseTile(expense);
       },
       itemCount: ExpenseDao.expenseCount,
       shrinkWrap: true,
