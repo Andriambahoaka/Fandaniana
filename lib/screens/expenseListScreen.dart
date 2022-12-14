@@ -1,26 +1,45 @@
-import 'package:fandaniana/dao/expense_dao.dart';
+import 'package:fandaniana/models/daily_expense.dart';
 import 'package:fandaniana/utilities/constants.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:fandaniana/utilities/utility.dart';
 import 'package:flutter/material.dart';
 
 import '../models/expense.dart';
+import '../models/type_expense.dart';
 
 class ExpenseList extends StatelessWidget {
-  const ExpenseList(this.idDailyExpense, this.idTypeExpense, {super.key});
+  const ExpenseList(this.dailyExpense, this.typeExpense, this.totalPrice);
 
-  final int idDailyExpense;
-  final int idTypeExpense;
+  final DailyExpense dailyExpense;
+  final TypeExpense typeExpense;
+  final double totalPrice;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const Text("Food"),
-        const SizedBox(
-          height: 15.0,
+        ListTile(
+          leading: Text('Date: ${dailyExpense.date}', style: kTableTextStyle),
+          title: Card(
+            color: Colors.blueGrey,
+            semanticContainer: true,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10.0),
+            ),
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const SizedBox(width: 10.0),
+                  Text(typeExpense.type, style: kTableTextStyle),
+                  const SizedBox(width: 10.0),
+                  LoadImage(typeExpense.image),
+                ]),
+          ),
+          trailing: Text('- Ar $totalPrice', style: kTableTextStyle),
         ),
         Table(
-          border: TableBorder.all(),
+          border: const TableBorder(
+              horizontalInside: BorderSide(
+                  width: 1, color: Colors.blue, style: BorderStyle.solid)),
           columnWidths: const <int, TableColumnWidth>{
             0: FlexColumnWidth(),
             1: FlexColumnWidth(),
@@ -37,8 +56,7 @@ class ExpenseList extends StatelessWidget {
   }
 
   List<TableRow> _buildRowList() {
-    List<Expense> expenses =
-        ExpenseDao.getListDailyExpenseByType(idDailyExpense, idTypeExpense);
+    List<Expense> expenses = dailyExpense.getListExpensesByType(typeExpense);
     //List<Expense> expenses = ExpenseDao.expenses;
 
     List<TableRow> result = [];
@@ -46,7 +64,7 @@ class ExpenseList extends StatelessWidget {
     result.add(const TableRow(
       children: <Widget>[
         TableColumnExpense('Designation'),
-        TableColumnExpense('price'),
+        TableColumnExpense('Price'),
         TableColumnExpense('Amount'),
       ],
     ));
@@ -71,8 +89,11 @@ class TableColumnExpense extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(left: 15.0),
-      height: 30.0,
+      padding: const EdgeInsets.only(
+        top: 10.0,
+        left: 15.0,
+      ),
+      height: 50.0,
       child: Text(
         columnText,
         style: kTableTextStyle,

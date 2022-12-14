@@ -1,12 +1,9 @@
-import 'package:fandaniana/screens/listExpenseScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../models/total_by_typeexpense.dart';
 import '../utilities/constants.dart';
-import 'daily_expense_list.dart';
-import 'expense_list.dart';
-import 'expense_table_row.dart';
+import '../screens/expenseListScreen.dart';
 
 class TotalByTypeExpenseTile extends StatelessWidget {
   TotalByTypeExpenseTile(this.totalByType);
@@ -39,8 +36,8 @@ class TotalByTypeExpenseTile extends StatelessWidget {
               ),
               context: context,
               builder: (context) => SingleChildScrollView(
-                    child: ExpenseList(totalByType.idDailyExpense,
-                        totalByType.typeExpense.idTypeExpense),
+                    child: ExpenseList(totalByType.dailyExpense,
+                        totalByType.typeExpense, totalByType.totalPrice),
                   ));
         });
   }

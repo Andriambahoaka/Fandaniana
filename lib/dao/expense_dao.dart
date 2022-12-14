@@ -6,6 +6,10 @@ import '../models/total_by_typeexpense.dart';
 import '../widgets/type_expense_card.dart';
 
 class ExpenseDao {
+  static DailyExpense daily1 = DailyExpense(1, 'Today');
+  static DailyExpense daily2 = DailyExpense(2, '12/02/2013');
+  static DailyExpense daily3 = DailyExpense(3, '12/02/2013');
+
   static List<TypeExpense> typeExpenses = [
     TypeExpense(1, 'Food', 'food'),
     TypeExpense(2, 'Car', 'car'),
@@ -15,17 +19,13 @@ class ExpenseDao {
     TypeExpense(6, 'House', 'house'),
   ];
 
-  static List<TotalByTypeExpense> totalByType = [
-    TotalByTypeExpense(1, TypeExpense(1, 'Food', 'food'), 500.0),
-    TotalByTypeExpense(2, TypeExpense(2, 'Car', 'car'), 600.0),
-    TotalByTypeExpense(3, TypeExpense(6, 'House', 'house'), 600.0),
-  ];
+  // static List<TotalByTypeExpense> totalByType = [
+  //   TotalByTypeExpense(daily1, TypeExpense(1, 'Food', 'food'), 500.0),
+  //   TotalByTypeExpense(daily2, TypeExpense(2, 'Car', 'car'), 600.0),
+  //   TotalByTypeExpense(daily3, TypeExpense(6, 'House', 'house'), 600.0),
+  // ];
 
-  static List<DailyExpense> overalls = [
-    DailyExpense(1, 'Today'),
-    DailyExpense(2, '12/02/2013'),
-    DailyExpense(3, '12/02/2013'),
-  ];
+  static List<DailyExpense> overalls = [daily1, daily2, daily3];
 
   static List<Expense> expenses = [
     Expense(
@@ -101,19 +101,13 @@ class ExpenseDao {
     return result;
   }
 
-  static List<Expense> getListDailyExpenseByType(int idDaily, int idType) {
-    print(idDaily);
-    print(idType);
-
+  static List<Expense> getListDailyExpenseByType(
+      int idDaily, TypeExpense typeExpense) {
     return expenses
         .where((element) =>
             element.idDailyExpense == idDaily &&
-            element.typeExpense.idTypeExpense == idType)
+            element.typeExpense.idTypeExpense == typeExpense.idTypeExpense)
         .toList();
-  }
-
-  static int get expenseCount {
-    return totalByType.length;
   }
 
   static int get typeExpenseCount {

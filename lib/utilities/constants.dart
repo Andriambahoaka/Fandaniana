@@ -1,5 +1,12 @@
 import 'package:flutter/material.dart';
 
+const KSummaryLabelStyle = TextStyle(
+  fontSize: 35.0,
+  color: Colors.black,
+// fontWeight: FontWeight.bold,
+  fontFamily: 'Bebas Neue',
+);
+
 const kAmountTextStyle = TextStyle(
   color: Colors.white,
   fontFamily: 'Bebas Neue',
@@ -24,3 +31,12 @@ const kTableTextStyle = TextStyle(
   //fontFamily: 'Valera',
   fontSize: 19.0,
 );
+
+const kFloatingButtonDecoration = BoxDecoration(
+    shape: BoxShape.circle,
+    gradient: LinearGradient(
+        begin: Alignment.centerLeft,
+        end: Alignment.centerRight,
+        stops: [0.1, 1.0],
+        tileMode: TileMode.clamp,
+        colors: [Color(0xffc8708a), Colors.red]));

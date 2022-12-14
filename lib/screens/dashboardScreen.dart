@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 import '../utilities/constants.dart';
 
+import '../utilities/utility.dart';
 import '../widgets/reusable_card.dart';
 
 class ExpenseScreen extends StatelessWidget {
@@ -27,17 +28,12 @@ class ExpenseScreen extends StatelessWidget {
                 child: DropdownButton<String>(
                   value: dropdownValue,
                   icon: Image.asset(
-                    "images/down.png",
+                    Utility.getLinkImage('down'),
                     width: 15,
                     height: 15,
                   ),
                   elevation: 56,
-                  style: const TextStyle(
-                    fontSize: 35.0,
-                    color: Colors.black,
-                    // fontWeight: FontWeight.bold,
-                    fontFamily: 'Bebas Neue',
-                  ),
+                  style: KSummaryLabelStyle,
                   underline: SizedBox(),
                   onChanged: (String? value) {},
                   items: list.map<DropdownMenuItem<String>>((String value) {
@@ -205,14 +201,7 @@ class AddingButton extends StatelessWidget {
           Icons.add,
           size: 34,
         ),
-        decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            gradient: LinearGradient(
-                begin: Alignment.centerLeft,
-                end: Alignment.centerRight,
-                stops: [0.1, 1.0],
-                tileMode: TileMode.clamp,
-                colors: [Color(0xffc8708a), Colors.red])),
+        decoration: kFloatingButtonDecoration,
       ),
       onPressed: () {
         showModalBottomSheet(

@@ -1,5 +1,6 @@
 import 'package:fandaniana/dao/expense_dao.dart';
 import 'package:fandaniana/utilities/constants.dart';
+import 'package:fandaniana/utilities/utility.dart';
 import 'package:fandaniana/widgets/type_expense_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -51,11 +52,7 @@ class AddExpenseScreen extends StatelessWidget {
             decoration: InputDecoration(
               suffixIcon: Padding(
                 padding: EdgeInsetsDirectional.only(end: 12.0),
-                child: Image.asset(
-                  'images/car.png',
-                  width: 45.0,
-                  height: 45.0,
-                ),
+                child: LoadImage('car'),
               ),
               border: OutlineInputBorder(
                 borderSide: BorderSide(width: 2, color: Colors.blueGrey),

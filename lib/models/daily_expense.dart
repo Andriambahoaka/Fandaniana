@@ -13,17 +13,13 @@ class DailyExpense {
 
   List<TotalByTypeExpense> getListTotalByTypeExpense() {
     List<TotalByTypeExpense> result = [];
-    List<Expense> listDailyExpense = getListDailyExpense();
-    List<TypeExpense> listTypeDepense = getListTypeExpense();
+    List<TypeExpense> listTypeExpense = getListTypeExpense();
 
-    for (var typeExpense in listTypeDepense) {
-      List<Expense> listExpensesByType = listDailyExpense
-          .where((element) =>
-              element.typeExpense.idTypeExpense == typeExpense.idTypeExpense)
-          .toList();
+    for (var typeExpense in listTypeExpense) {
+      List<Expense> listExpensesByType = getListExpensesByType(typeExpense);
       double totalPrice = getTotalExpenses(listExpensesByType);
       TotalByTypeExpense totalByTYpe =
-          TotalByTypeExpense(idDailyExpense, typeExpense, totalPrice);
+          TotalByTypeExpense(this, typeExpense, totalPrice);
       result.add(totalByTYpe);
     }
 
@@ -46,6 +42,14 @@ class DailyExpense {
   List<Expense> getListDailyExpense() {
     return ExpenseDao.expenses
         .where((element) => element.idDailyExpense == idDailyExpense)
+        .toList();
+  }
+
+  List<Expense> getListExpensesByType(TypeExpense typeExpense) {
+    List<Expense> listDailyExpense = getListDailyExpense();
+    return listDailyExpense
+        .where((element) =>
+            element.typeExpense.idTypeExpense == typeExpense.idTypeExpense)
         .toList();
   }
 
