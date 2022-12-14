@@ -11,8 +11,8 @@ class DailyExpenseList extends StatelessWidget {
           final overall = ExpenseDao.overalls[index];
           return Column(
             children: [
-              HeadTile(overall.date, overall.total),
-              TotalByTypeExpenseList(),
+              HeadTile(overall.date, overall.getDailyTotal()),
+              TotalByTypeExpenseList(overall.getListTotalByTypeExpense()),
             ],
           );
         },

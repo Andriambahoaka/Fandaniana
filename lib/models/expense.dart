@@ -15,4 +15,8 @@ class Expense {
   final String designation;
   final double unitPrice;
   final int amount;
+
+  double getSubTotal() {
+    return unitPrice * amount;
+  }
 }

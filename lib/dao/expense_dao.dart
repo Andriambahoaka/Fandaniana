@@ -22,9 +22,9 @@ class ExpenseDao {
   ];
 
   static List<DailyExpense> overalls = [
-    DailyExpense(1, 'Today', 1400.0),
-    DailyExpense(2, '12/02/2013', 1400.0),
-    DailyExpense(3, '12/02/2013', 1400.0),
+    DailyExpense(1, 'Today'),
+    DailyExpense(2, '12/02/2013'),
+    DailyExpense(3, '12/02/2013'),
   ];
 
   static List<Expense> expenses = [
@@ -52,9 +52,44 @@ class ExpenseDao {
     Expense(
         idExpense: 1,
         idDailyExpense: 2,
+        typeExpense: TypeExpense(2, 'Car', 'car'),
+        designation: "Gasoil",
+        unitPrice: 100.0,
+        amount: 1),
+    Expense(
+        idExpense: 1,
+        idDailyExpense: 2,
         typeExpense: TypeExpense(6, 'House', 'house'),
         designation: "Jirama",
         unitPrice: 20000.0,
+        amount: 1),
+    Expense(
+        idExpense: 1,
+        idDailyExpense: 2,
+        typeExpense: TypeExpense(6, 'House', 'house'),
+        designation: "Jirama",
+        unitPrice: 20000.0,
+        amount: 1),
+    Expense(
+        idExpense: 1,
+        idDailyExpense: 2,
+        typeExpense: TypeExpense(6, 'House', 'house'),
+        designation: "Jirama",
+        unitPrice: 20000.0,
+        amount: 1),
+    Expense(
+        idExpense: 1,
+        idDailyExpense: 3,
+        typeExpense: TypeExpense(1, 'Food', 'food'),
+        designation: "Karoty",
+        unitPrice: 300.0,
+        amount: 3),
+    Expense(
+        idExpense: 1,
+        idDailyExpense: 3,
+        typeExpense: TypeExpense(1, 'House', 'house'),
+        designation: "Mixeur",
+        unitPrice: 10000.0,
         amount: 1),
   ];
 

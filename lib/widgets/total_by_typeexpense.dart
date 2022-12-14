@@ -13,10 +13,10 @@ class TotalByTypeExpenseList extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.builder(
       itemBuilder: (context, index) {
-        final expense = totalByTypeList[index];
-        return TotalByTypeExpenseTile(expense);
+        final totalByTypeExpense = totalByTypeList[index];
+        return TotalByTypeExpenseTile(totalByTypeExpense);
       },
-      itemCount: ExpenseDao.expenseCount,
+      itemCount: totalByTypeList.length,
       shrinkWrap: true,
       physics: ClampingScrollPhysics(),
     );
