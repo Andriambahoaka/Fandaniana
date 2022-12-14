@@ -18,3 +18,9 @@ const kHeadTextStyle = TextStyle(
   fontWeight: FontWeight.bold,
   fontSize: 19.0,
 );
+
+const kTableTextStyle = TextStyle(
+  color: Colors.black,
+  //fontFamily: 'Valera',
+  fontSize: 19.0,
+);

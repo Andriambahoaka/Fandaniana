@@ -1,11 +1,12 @@
 import 'package:fandaniana/dao/expense_dao.dart';
 import 'package:fandaniana/utilities/constants.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 import '../models/expense.dart';
 
 class ExpenseList extends StatelessWidget {
-  ExpenseList(this.idDailyExpense, this.idTypeExpense);
+  const ExpenseList(this.idDailyExpense, this.idTypeExpense, {super.key});
 
   final int idDailyExpense;
   final int idTypeExpense;
@@ -14,8 +15,8 @@ class ExpenseList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text("Food"),
-        SizedBox(
+        const Text("Food"),
+        const SizedBox(
           height: 15.0,
         ),
         Table(
@@ -28,6 +29,9 @@ class ExpenseList extends StatelessWidget {
           defaultVerticalAlignment: TableCellVerticalAlignment.middle,
           children: _buildRowList(),
         ),
+        const SizedBox(
+          height: 40.0,
+        ),
       ],
     );
   }
@@ -39,7 +43,7 @@ class ExpenseList extends StatelessWidget {
 
     List<TableRow> result = [];
 
-    result.add(TableRow(
+    result.add(const TableRow(
       children: <Widget>[
         TableColumnExpense('Designation'),
         TableColumnExpense('price'),
@@ -47,33 +51,32 @@ class ExpenseList extends StatelessWidget {
       ],
     ));
 
-    expenses.forEach((element) {
+    for (var element in expenses) {
       result.add(TableRow(
         children: <Widget>[
-          TableColumnExpense('${element.designation}'),
+          TableColumnExpense(element.designation),
           TableColumnExpense('${element.unitPrice}'),
           TableColumnExpense('${element.amount}'),
         ],
       ));
-    });
+    }
     return result;
   }
 }
 
 class TableColumnExpense extends StatelessWidget {
-  TableColumnExpense(this.columnText);
-
+  const TableColumnExpense(this.columnText, {super.key});
   final String columnText;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(left: 15.0),
+      padding: const EdgeInsets.only(left: 15.0),
+      height: 30.0,
       child: Text(
         columnText,
-        style: kLabelTextStyle,
+        style: kTableTextStyle,
       ),
-      height: 30.0,
     );
   }
 }

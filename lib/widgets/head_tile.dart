@@ -10,17 +10,20 @@ class HeadTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      leading: Text(
-        '',
-      ),
-      title: Text(
-        date,
-        style: kHeadTextStyle,
-      ),
-      trailing: Text(
-        '- AR $total',
-        style: kHeadTextStyle,
+    return Container(
+      color: Colors.black12,
+      child: ListTile(
+        leading: Text(
+          '',
+        ),
+        title: Text(
+          date,
+          style: kHeadTextStyle,
+        ),
+        trailing: Text(
+          '- AR $total',
+          style: kHeadTextStyle,
+        ),
       ),
     );
   }

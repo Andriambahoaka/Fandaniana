@@ -18,7 +18,7 @@ class TotalByTypeExpenseTile extends StatelessWidget {
     return ListTile(
         leading: Image.asset(
           "images/${totalByType.typeExpense.image}.png",
-          height: 45,
+          height: 37,
         ),
         title: Text(
           totalByType.typeExpense.type,

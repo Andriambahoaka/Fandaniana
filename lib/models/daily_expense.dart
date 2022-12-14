@@ -16,7 +16,7 @@ class DailyExpense {
     List<Expense> listDailyExpense = getListDailyExpense();
     List<TypeExpense> listTypeDepense = getListTypeExpense();
 
-    listTypeDepense.forEach((typeExpense) {
+    for (var typeExpense in listTypeDepense) {
       List<Expense> listExpensesByType = listDailyExpense
           .where((element) =>
               element.typeExpense.idTypeExpense == typeExpense.idTypeExpense)
@@ -25,7 +25,7 @@ class DailyExpense {
       TotalByTypeExpense totalByTYpe =
           TotalByTypeExpense(idDailyExpense, typeExpense, totalPrice);
       result.add(totalByTYpe);
-    });
+    }
 
     return result;
   }
@@ -37,9 +37,9 @@ class DailyExpense {
 
   double getTotalExpenses(List<Expense> listExpense) {
     double total = 0.0;
-    listExpense.forEach((element) {
+    for (var element in listExpense) {
       total += element.getSubTotal();
-    });
+    }
     return total;
   }
 

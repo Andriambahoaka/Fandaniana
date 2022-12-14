@@ -102,6 +102,9 @@ class ExpenseDao {
   }
 
   static List<Expense> getListDailyExpenseByType(int idDaily, int idType) {
+    print(idDaily);
+    print(idType);
+
     return expenses
         .where((element) =>
             element.idDailyExpense == idDaily &&
