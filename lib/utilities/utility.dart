@@ -13,8 +13,8 @@ class LoadImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Image.asset(
       Utility.getLinkImage(imageName),
-      width: 22.0,
-      height: 30.0,
+      width: 25.0,
+      height: 40.0,
     );
   }
 }

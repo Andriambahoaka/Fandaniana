@@ -17,29 +17,50 @@ class ExpenseList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        ListTile(
-          leading: Text('Date: ${dailyExpense.date}', style: kTableTextStyle),
-          title: Card(
-            color: Colors.blueGrey,
-            semanticContainer: true,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10.0),
+        Container(
+          padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+          child:
+              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+            RichText(
+              text: TextSpan(style: kTableTextStyle, children: [
+                const TextSpan(
+                    text: 'Date : ',
+                    style: TextStyle(fontWeight: FontWeight.bold)),
+                TextSpan(text: '${dailyExpense.date}'),
+              ]),
             ),
-            child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const SizedBox(width: 10.0),
-                  Text(typeExpense.type, style: kTableTextStyle),
-                  const SizedBox(width: 10.0),
-                  LoadImage(typeExpense.image),
-                ]),
-          ),
-          trailing: Text('- Ar $totalPrice', style: kTableTextStyle),
+            Card(
+              color: Colors.blueGrey,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+              child: Container(
+                padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(typeExpense.type,
+                          style: kTableTextStyle.copyWith(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white)),
+                      const SizedBox(
+                        width: 8.0,
+                      ),
+                      LoadImage(typeExpense.image),
+                    ]),
+              ),
+            ),
+          ]
+                  //trailing: Text('- Ar $totalPrice', style: kTableTextStyle),
+                  ),
+        ),
+        const SizedBox(
+          height: 10.0,
         ),
         Table(
           border: const TableBorder(
               horizontalInside: BorderSide(
-                  width: 1, color: Colors.blue, style: BorderStyle.solid)),
+                  width: 1, color: Colors.blueGrey, style: BorderStyle.solid)),
           columnWidths: const <int, TableColumnWidth>{
             0: FlexColumnWidth(),
             1: FlexColumnWidth(),
@@ -63,9 +84,9 @@ class ExpenseList extends StatelessWidget {
 
     result.add(const TableRow(
       children: <Widget>[
-        TableColumnExpense('Designation'),
-        TableColumnExpense('Price'),
-        TableColumnExpense('Amount'),
+        TableColumnExpense('Designation', kTableHeadColor),
+        TableColumnExpense('Price', kTableHeadColor),
+        TableColumnExpense('Amount', kTableHeadColor),
       ],
     ));
 
@@ -83,12 +104,14 @@ class ExpenseList extends StatelessWidget {
 }
 
 class TableColumnExpense extends StatelessWidget {
-  const TableColumnExpense(this.columnText, {super.key});
+  const TableColumnExpense(this.columnText, [this.color = Colors.white]);
   final String columnText;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: color,
       padding: const EdgeInsets.only(
         top: 10.0,
         left: 15.0,

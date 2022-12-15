@@ -40,3 +40,5 @@ const kFloatingButtonDecoration = BoxDecoration(
         stops: [0.1, 1.0],
         tileMode: TileMode.clamp,
         colors: [Color(0xffc8708a), Colors.red]));
+
+const kTableHeadColor = Color(0xffcfd8dc);
