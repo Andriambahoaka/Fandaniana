@@ -62,9 +62,10 @@ class ExpenseList extends StatelessWidget {
               horizontalInside: BorderSide(
                   width: 1, color: Colors.blueGrey, style: BorderStyle.solid)),
           columnWidths: const <int, TableColumnWidth>{
-            0: FlexColumnWidth(),
+            0: FixedColumnWidth(120.0),
             1: FlexColumnWidth(),
-            2: FlexColumnWidth(),
+            2: FixedColumnWidth(60.0),
+            3: FlexColumnWidth()
           },
           defaultVerticalAlignment: TableCellVerticalAlignment.middle,
           children: _buildRowList(),
@@ -82,11 +83,16 @@ class ExpenseList extends StatelessWidget {
 
     List<TableRow> result = [];
 
-    result.add(const TableRow(
+    result.add(TableRow(
       children: <Widget>[
-        TableColumnExpense('Designation', kTableHeadColor),
-        TableColumnExpense('Price', kTableHeadColor),
-        TableColumnExpense('Amount', kTableHeadColor),
+        TableColumnExpense('Designation',
+            color: kTableHeadColor, style: kTableTextStyleWeight),
+        TableColumnExpense('Price',
+            color: kTableHeadColor, style: kTableTextStyleWeight),
+        TableColumnExpense('Qty',
+            color: kTableHeadColor, style: kTableTextStyleWeight),
+        TableColumnExpense('Subtotal',
+            color: kTableHeadColor, style: kTableTextStyleWeight),
       ],
     ));
 
@@ -96,6 +102,7 @@ class ExpenseList extends StatelessWidget {
           TableColumnExpense(element.designation),
           TableColumnExpense('${element.unitPrice}'),
           TableColumnExpense('${element.amount}'),
+          TableColumnExpense('${element.getSubTotal()}'),
         ],
       ));
     }
@@ -104,9 +111,11 @@ class ExpenseList extends StatelessWidget {
 }
 
 class TableColumnExpense extends StatelessWidget {
-  const TableColumnExpense(this.columnText, [this.color = Colors.white]);
+  const TableColumnExpense(this.columnText,
+      {super.key, this.color = Colors.white, this.style = kTableTextStyle});
   final String columnText;
   final Color color;
+  final TextStyle style;
 
   @override
   Widget build(BuildContext context) {
@@ -114,12 +123,12 @@ class TableColumnExpense extends StatelessWidget {
       color: color,
       padding: const EdgeInsets.only(
         top: 10.0,
-        left: 15.0,
+        left: 10.0,
+        bottom: 10.0,
       ),
-      height: 50.0,
       child: Text(
         columnText,
-        style: kTableTextStyle,
+        style: style,
       ),
     );
   }

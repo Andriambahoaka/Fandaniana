@@ -32,6 +32,9 @@ const kTableTextStyle = TextStyle(
   fontSize: 19.0,
 );
 
+TextStyle kTableTextStyleWeight =
+    kTableTextStyle.copyWith(fontWeight: FontWeight.bold);
+
 const kFloatingButtonDecoration = BoxDecoration(
     shape: BoxShape.circle,
     gradient: LinearGradient(
