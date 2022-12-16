@@ -50,9 +50,7 @@ class ExpenseList extends StatelessWidget {
                     ]),
               ),
             ),
-          ]
-                  //trailing: Text('- Ar $totalPrice', style: kTableTextStyle),
-                  ),
+          ]),
         ),
         const SizedBox(
           height: 10.0,
@@ -106,6 +104,16 @@ class ExpenseList extends StatelessWidget {
         ],
       ));
     }
+
+    result.add(TableRow(
+      children: <Widget>[
+        const TableColumnExpense('', color: kTableHeadColor),
+        const TableColumnExpense('Total : ',
+            style: kHeadTextStyle, color: kTableHeadColor),
+        const TableColumnExpense('', color: kTableHeadColor),
+        TableColumnExpense(' $totalPrice'),
+      ],
+    ));
     return result;
   }
 }
