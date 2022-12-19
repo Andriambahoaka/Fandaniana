@@ -45,3 +45,5 @@ const kFloatingButtonDecoration = BoxDecoration(
         colors: [Color(0xffc8708a), Colors.red]));
 
 const kTableHeadColor = Color(0xffcfd8dc);
+const kActiveCardColor = Colors.blueGrey;
+const kInactiveCardColor = Colors.white;

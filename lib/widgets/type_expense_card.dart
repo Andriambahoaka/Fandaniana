@@ -18,16 +18,16 @@ class TypeExpenseCard extends StatelessWidget {
         color: Colors.white,
         semanticContainer: true,
         clipBehavior: Clip.antiAliasWithSaveLayer,
-        child: Image.asset(
-          Utility.getLinkImage(typeExpense.image),
-          width: 45.0,
-          height: 45.0,
-        ),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.0),
         ),
         elevation: 5,
         margin: EdgeInsets.all(10),
+        child: Image.asset(
+          Utility.getLinkImage(typeExpense.image),
+          width: 45.0,
+          height: 45.0,
+        ),
       ),
     );
   }
