@@ -6,13 +6,37 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../models/type_expense.dart';
 import '../widgets/type_expense_card.dart';
 
-class AddExpenseScreen extends StatelessWidget {
+class AddExpenseScreen extends StatefulWidget {
   const AddExpenseScreen({Key? key}) : super(key: key);
+
+  @override
+  State<AddExpenseScreen> createState() => _AddExpenseScreenState();
+}
+
+class _AddExpenseScreenState extends State<AddExpenseScreen> {
+  List<TypeExpense> typeExpenses =
+      List<TypeExpense>.from(ExpenseDao.typeExpenses);
+  late TypeExpense selectedTypeExpense = TypeExpense(1, "koko", 'car');
 
   List<TypeExpenseCard> _buildRowList() {
     return ExpenseDao.getListExpenseCard();
+  }
+
+  select(TypeExpense typeExpense) {
+    setState(() {
+      selectedTypeExpense = typeExpense;
+    });
+  }
+
+  List<TypeExpenseCard> getListExpenseCard() {
+    List<TypeExpenseCard> result = [];
+    for (var element in typeExpenses) {
+      result.add(TypeExpenseCard(element, onTap: select(element)));
+    }
+    return result;
   }
 
   @override
@@ -35,7 +59,7 @@ class AddExpenseScreen extends StatelessWidget {
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
-              children: _buildRowList(),
+              children: getListExpenseCard(),
             ),
           ),
           SizedBox(
@@ -52,7 +76,7 @@ class AddExpenseScreen extends StatelessWidget {
             decoration: InputDecoration(
               suffixIcon: Padding(
                 padding: EdgeInsetsDirectional.only(end: 12.0),
-                child: LoadImage('car'),
+                child: LoadImage(selectedTypeExpense.image),
               ),
               border: OutlineInputBorder(
                 borderSide: BorderSide(width: 2, color: Colors.blueGrey),
