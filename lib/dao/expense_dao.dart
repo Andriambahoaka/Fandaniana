@@ -126,4 +126,6 @@ class ExpenseDao extends ChangeNotifier {
     type.isSelected = true;
     notifyListeners();
   }
+
+  checkTodayDate() {}
 }
