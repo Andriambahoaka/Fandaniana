@@ -19,22 +19,23 @@ class AddExpenseScreen extends StatefulWidget {
 class _AddExpenseScreenState extends State<AddExpenseScreen> {
   List<TypeExpense> typeExpenses =
       List<TypeExpense>.from(ExpenseDao.typeExpenses);
-  late TypeExpense selectedTypeExpense = TypeExpense(1, "koko", 'car');
+  TypeExpense? selectedTypeExpense;
 
-  List<TypeExpenseCard> _buildRowList() {
-    return ExpenseDao.getListExpenseCard();
-  }
-
-  select(TypeExpense typeExpense) {
-    setState(() {
-      selectedTypeExpense = typeExpense;
-    });
-  }
+  int selectedIndex = -1;
 
   List<TypeExpenseCard> getListExpenseCard() {
     List<TypeExpenseCard> result = [];
     for (var element in typeExpenses) {
-      result.add(TypeExpenseCard(element, onTap: select(element)));
+      result.add(TypeExpenseCard(
+        element,
+        onTap: () {
+          selectedTypeExpense = element;
+          setState(() {
+            selectedIndex = typeExpenses.indexOf(element);
+            ExpenseDao(typeExpenses).selectType(element);
+          });
+        },
+      ));
     }
     return result;
   }
@@ -42,7 +43,7 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(
+      margin: const EdgeInsets.only(
         top: 20.0,
         left: 20.0,
         right: 20.0,
@@ -62,7 +63,7 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
               children: getListExpenseCard(),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           Align(
@@ -75,17 +76,19 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
           TextField(
             decoration: InputDecoration(
               suffixIcon: Padding(
-                padding: EdgeInsetsDirectional.only(end: 12.0),
-                child: LoadImage(selectedTypeExpense.image),
+                padding: const EdgeInsetsDirectional.only(end: 12.0),
+                child: (selectedTypeExpense == null)
+                    ? LoadImage("other")
+                    : LoadImage(selectedTypeExpense!.image),
               ),
-              border: OutlineInputBorder(
+              border: const OutlineInputBorder(
                 borderSide: BorderSide(width: 2, color: Colors.blueGrey),
               ),
             ),
             autofocus: true,
             onChanged: (value) {},
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           Row(
@@ -95,7 +98,7 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
               NumberTextField(100.0, 'Amount')
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           TextButton.icon(
@@ -108,12 +111,12 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
               backgroundColor: Colors.teal, // Text Color
               minimumSize: const Size.fromHeight(50),
             ),
-            icon: Icon(
+            icon: const Icon(
               Icons.add,
               color: Colors.white,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
         ],
