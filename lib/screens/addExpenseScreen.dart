@@ -1,8 +1,6 @@
 import 'package:fandaniana/dao/expense_dao.dart';
 import 'package:fandaniana/utilities/constants.dart';
 import 'package:fandaniana/utilities/utility.dart';
-import 'package:fandaniana/widgets/type_expense_list.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -126,7 +124,7 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
 }
 
 class NumberTextField extends StatelessWidget {
-  NumberTextField(this.width, this.label);
+  const NumberTextField(this.width, this.label);
 
   final double width;
   final String label;
@@ -148,7 +146,7 @@ class NumberTextField extends StatelessWidget {
             inputFormatters: <TextInputFormatter>[
               FilteringTextInputFormatter.digitsOnly
             ],
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               border: OutlineInputBorder(
                 borderSide: BorderSide(width: 2, color: Colors.blueGrey),
               ),
