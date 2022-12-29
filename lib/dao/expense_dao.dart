@@ -7,9 +7,13 @@ import '../models/total_by_typeexpense.dart';
 import '../widgets/type_expense_card.dart';
 
 class ExpenseDao extends ChangeNotifier {
-  static DailyExpense daily1 = DailyExpense(1, 'Today');
-  static DailyExpense daily2 = DailyExpense(2, '12/02/2013');
-  static DailyExpense daily3 = DailyExpense(3, '12/02/2013');
+  static DateTime moonParting = DateTime.parse('2022-12-27 20:18:04Z');
+  static DateTime moonLanding = DateTime.parse('2022-12-28 20:18:04Z');
+  static DateTime moonActual = DateTime.parse('2022-12-29 20:18:04Z');
+
+  static DailyExpense daily1 = DailyExpense(1, moonParting);
+  static DailyExpense daily2 = DailyExpense(2, moonLanding);
+  static DailyExpense daily3 = DailyExpense(3, moonActual);
 
   List<TypeExpense> typeExpsenseList;
 
@@ -100,9 +104,9 @@ class ExpenseDao extends ChangeNotifier {
 
   static List<TypeExpenseCard> getListExpenseCard() {
     List<TypeExpenseCard> result = [];
-    typeExpenses.forEach((element) {
+    for (var element in typeExpenses) {
       result.add(TypeExpenseCard(element));
-    });
+    }
     return result;
   }
 
@@ -127,5 +131,17 @@ class ExpenseDao extends ChangeNotifier {
     notifyListeners();
   }
 
-  checkTodayDate() {}
+  static int getLastIdOveralls() {
+    return overalls[overalls.length - 1].idDailyExpense;
+  }
+
+  static checkTodayDate() {
+    DateTime lastDate = overalls[overalls.length - 1].date;
+    DateTime now = DateTime.now();
+    if (!lastDate.isSameDate(now)) {
+      int id = getLastIdOveralls() + 1;
+      DailyExpense newDaily = DailyExpense(id, now);
+      overalls.add(newDaily);
+    }
+  }
 }

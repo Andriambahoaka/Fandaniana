@@ -1,15 +1,21 @@
 import 'package:fandaniana/dao/expense_dao.dart';
 import 'package:fandaniana/models/type_expense.dart';
+import 'package:fandaniana/utilities/utility.dart';
 
 import 'expense.dart';
 import 'total_by_typeexpense.dart';
+import 'package:intl/intl.dart';
 
 class DailyExpense {
   DailyExpense(this.idDailyExpense, this.date);
 
   final int idDailyExpense;
-  final String date;
-  //final DateTime date;
+  //final String date;
+  final DateTime date;
+
+  String getDateString() {
+    return Utility.getStringDate(date);
+  }
 
   List<TotalByTypeExpense> getListTotalByTypeExpense() {
     List<TotalByTypeExpense> result = [];
@@ -60,5 +66,11 @@ class DailyExpense {
         .map((e) => e.typeExpense)
         .where((element) => added.add(element.idTypeExpense))
         .toList();
+  }
+}
+
+extension DateOnlyCompare on DateTime {
+  bool isSameDate(DateTime other) {
+    return year == other.year && month == other.month && day == other.day;
   }
 }
