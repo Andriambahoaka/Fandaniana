@@ -52,7 +52,7 @@ class ExpenseScreen extends StatelessWidget {
                     size: 34,
                   ),
                   elevation: 56,
-                  underline: SizedBox(),
+                  underline: const SizedBox(),
                   onChanged: (String? value) {},
                   items: list.map<DropdownMenuItem<String>>((String value) {
                     return DropdownMenuItem<String>(
@@ -67,7 +67,7 @@ class ExpenseScreen extends StatelessWidget {
           Stack(
             children: [
               ReusableCard(
-                padding: EdgeInsets.only(left: 20, right: 5),
+                padding: const EdgeInsets.only(left: 20, right: 5),
                 height: 130.0,
                 colour: Colors.orangeAccent,
                 cardChild: Row(
@@ -110,16 +110,16 @@ class ExpenseScreen extends StatelessWidget {
             children: [
               Expanded(
                 child: ReusableCard(
-                  padding: EdgeInsets.only(left: 10, right: 5),
+                  padding: const EdgeInsets.only(left: 10, right: 5),
                   height: 90.0,
-                  colour: Color(0xff918abe),
+                  colour: const Color(0xff918abe),
                   cardChild: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
+                        children: const [
                           Text(
                             'Income',
                             style: kLabelTextStyle,
@@ -141,7 +141,7 @@ class ExpenseScreen extends StatelessWidget {
               ),
               Expanded(
                 child: ReusableCard(
-                  padding: EdgeInsets.only(left: 10, right: 5),
+                  padding: const EdgeInsets.only(left: 10, right: 5),
                   height: 90.0,
                   colour: const Color(0xffff5959),
                   cardChild: Row(
