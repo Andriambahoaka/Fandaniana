@@ -45,17 +45,17 @@ class DailyExpense {
     return getTotalExpenses(listDailyExpense);
   }
 
-  List<Expense> getListDailyExpense() {
-    return ExpenseDao.expenses
-        .where((element) => element.idDailyExpense == idDailyExpense)
-        .toList();
-  }
-
   List<Expense> getListExpensesByType(TypeExpense typeExpense) {
     List<Expense> listDailyExpense = getListDailyExpense();
     return listDailyExpense
         .where((element) =>
             element.typeExpense.idTypeExpense == typeExpense.idTypeExpense)
+        .toList();
+  }
+
+  List<Expense> getListDailyExpense() {
+    return ExpenseDao.expenses
+        .where((element) => element.idDailyExpense == idDailyExpense)
         .toList();
   }
 
