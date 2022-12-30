@@ -24,7 +24,7 @@ class ExpenseScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
-                margin: EdgeInsets.only(left: 8.0),
+                margin: const EdgeInsets.only(left: 8.0),
                 child: DropdownButton<String>(
                   value: dropdownValue,
                   icon: Image.asset(
