@@ -45,7 +45,7 @@ class ExpenseScreen extends StatelessWidget {
                 ),
               ),
               Container(
-                margin: EdgeInsets.only(right: 10.0),
+                margin: const EdgeInsets.only(right: 10.0),
                 child: DropdownButton<String>(
                   icon: Icon(
                     Icons.more_vert,
