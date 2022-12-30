@@ -34,7 +34,7 @@ class ExpenseScreen extends StatelessWidget {
                   ),
                   elevation: 56,
                   style: KSummaryLabelStyle,
-                  underline: SizedBox(),
+                  underline: const SizedBox(),
                   onChanged: (String? value) {},
                   items: list.map<DropdownMenuItem<String>>((String value) {
                     return DropdownMenuItem<String>(
