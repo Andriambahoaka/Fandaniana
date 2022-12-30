@@ -16,7 +16,7 @@ class ExpenseScreen extends StatelessWidget {
     List<String> list = <String>['JANOARY', 'FEBROARY', 'MARTSA', 'APRILY'];
     String dropdownValue = list.first;
     return Scaffold(
-      floatingActionButton: AddingButton(),
+      floatingActionButton: const AddingButton(),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -143,14 +143,14 @@ class ExpenseScreen extends StatelessWidget {
                 child: ReusableCard(
                   padding: EdgeInsets.only(left: 10, right: 5),
                   height: 90.0,
-                  colour: Color(0xffff5959),
+                  colour: const Color(0xffff5959),
                   cardChild: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
+                        children: const [
                           Text(
                             'Expense',
                             style: kLabelTextStyle,
