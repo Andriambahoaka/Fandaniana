@@ -32,17 +32,17 @@ class DailyExpense {
     return result;
   }
 
-  double getDailyTotal() {
-    List<Expense> listDailyExpense = getListDailyExpense();
-    return getTotalExpenses(listDailyExpense);
-  }
-
   double getTotalExpenses(List<Expense> listExpense) {
     double total = 0.0;
     for (var element in listExpense) {
       total += element.getSubTotal();
     }
     return total;
+  }
+
+  double getDailyTotal() {
+    List<Expense> listDailyExpense = getListDailyExpense();
+    return getTotalExpenses(listDailyExpense);
   }
 
   List<Expense> getListDailyExpense() {
