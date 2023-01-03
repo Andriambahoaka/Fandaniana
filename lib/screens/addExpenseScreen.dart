@@ -18,8 +18,12 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
   List<TypeExpense> typeExpenses =
       List<TypeExpense>.from(ExpenseDao.typeExpenses);
   TypeExpense? selectedTypeExpense;
-
+  String designation = " ";
+  double price = 0.0;
+  int amount = 0;
   int selectedIndex = -1;
+
+  final _formKey = GlobalKey<FormState>();
 
   List<TypeExpenseCard> getListExpenseCard() {
     List<TypeExpenseCard> result = [];
@@ -46,88 +50,178 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
         left: 20.0,
         right: 20.0,
       ),
-      child: Column(
-        children: [
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              'Type : ',
-              style: kHeadTextStyle.copyWith(fontWeight: FontWeight.w100),
-            ),
-          ),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: getListExpenseCard(),
-            ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              'Designation : ',
-              style: kHeadTextStyle.copyWith(fontWeight: FontWeight.w100),
-            ),
-          ),
-          TextField(
-            decoration: InputDecoration(
-              suffixIcon: Padding(
-                padding: const EdgeInsetsDirectional.only(end: 12.0),
-                child: (selectedTypeExpense == null)
-                    ? LoadImage("other")
-                    : LoadImage(selectedTypeExpense!.image),
-              ),
-              border: const OutlineInputBorder(
-                borderSide: BorderSide(width: 2, color: Colors.blueGrey),
+      child: Form(
+        key: _formKey,
+        child: Column(
+          children: [
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                'Type : ',
+                style: kHeadTextStyle.copyWith(fontWeight: FontWeight.w100),
               ),
             ),
-            autofocus: true,
-            onChanged: (value) {},
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              NumberTextField(240.0, 'Price'),
-              NumberTextField(100.0, 'Amount')
-            ],
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          TextButton.icon(
-            onPressed: () {},
-            label: Text(
-              'Add',
-              style: kHeadTextStyle.copyWith(color: Colors.white),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: getListExpenseCard(),
+              ),
             ),
-            style: TextButton.styleFrom(
-              backgroundColor: Colors.teal, // Text Color
-              minimumSize: const Size.fromHeight(50),
+            const SizedBox(
+              height: 20,
             ),
-            icon: const Icon(
-              Icons.add,
-              color: Colors.white,
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                'Designation : ',
+                style: kHeadTextStyle.copyWith(fontWeight: FontWeight.w100),
+              ),
             ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-        ],
+            TextFormField(
+              decoration: InputDecoration(
+                suffixIcon: Padding(
+                  padding: const EdgeInsetsDirectional.only(end: 12.0),
+                  child: (selectedTypeExpense == null)
+                      ? const LoadImage("other")
+                      : LoadImage(selectedTypeExpense!.image),
+                ),
+                border: const OutlineInputBorder(
+                  borderSide: BorderSide(width: 2, color: Colors.blueGrey),
+                ),
+              ),
+              autofocus: true,
+              onChanged: (value) {
+                designation = value;
+              },
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please enter the designation';
+                }
+                return null;
+              },
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                SizedBox(
+                  width: 240.0,
+                  child: Column(
+                    children: [
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          'Price : ',
+                          style: kHeadTextStyle.copyWith(
+                              fontWeight: FontWeight.w100),
+                        ),
+                      ),
+                      TextFormField(
+                        keyboardType: TextInputType.number,
+                        inputFormatters: <TextInputFormatter>[
+                          FilteringTextInputFormatter.digitsOnly
+                        ],
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(
+                            borderSide:
+                                BorderSide(width: 2, color: Colors.blueGrey),
+                          ),
+                        ),
+                        onChanged: (value) {
+                          price = value as double;
+                        },
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter the price';
+                          }
+                          return null;
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  width: 100.0,
+                  child: Column(
+                    children: [
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          'Amount : ',
+                          style: kHeadTextStyle.copyWith(
+                              fontWeight: FontWeight.w100),
+                        ),
+                      ),
+                      TextFormField(
+                        keyboardType: TextInputType.number,
+                        inputFormatters: <TextInputFormatter>[
+                          FilteringTextInputFormatter.digitsOnly
+                        ],
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(
+                            borderSide:
+                                BorderSide(width: 2, color: Colors.blueGrey),
+                          ),
+                        ),
+                        onChanged: (value) {
+                          amount = value as int;
+                        },
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter the amount';
+                          }
+                          return null;
+                        },
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            TextButton.icon(
+              onPressed: () {
+                print(selectedTypeExpense?.idTypeExpense);
+                if (_formKey.currentState!.validate()) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Processing Data')),
+                  );
+                }
+              },
+              label: Text(
+                'Add',
+                style: kHeadTextStyle.copyWith(color: Colors.white),
+              ),
+              style: TextButton.styleFrom(
+                backgroundColor: Colors.teal, // Text Color
+                minimumSize: const Size.fromHeight(50),
+              ),
+              icon: const Icon(
+                Icons.add,
+                color: Colors.white,
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+          ],
+        ),
       ),
     );
   }
 }
 
 class NumberTextField extends StatelessWidget {
-  const NumberTextField(this.width, this.label);
+  const NumberTextField(this.width, this.label,
+      {super.key, required this.onChanged});
 
   final double width;
   final String label;
+  final Function onChanged;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -151,7 +245,9 @@ class NumberTextField extends StatelessWidget {
                 borderSide: BorderSide(width: 2, color: Colors.blueGrey),
               ),
             ),
-            onChanged: (value) {},
+            onChanged: (value) {
+              onChanged(value);
+            },
           ),
         ],
       ),

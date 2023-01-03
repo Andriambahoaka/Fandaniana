@@ -1,6 +1,5 @@
 import 'package:fandaniana/screens/addExpenseScreen.dart';
 import 'package:fandaniana/widgets/daily_expense_list.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../utilities/constants.dart';
@@ -95,12 +94,10 @@ class ExpenseScreen extends StatelessWidget {
                 left: 230,
                 child: FittedBox(
                   fit: BoxFit.none,
-                  child: Container(
-                    child: Image.asset(
-                      'images/wallet_.png',
-                      width: 135,
-                      height: 155,
-                    ),
+                  child: Image.asset(
+                    'images/wallet_.png',
+                    width: 135,
+                    height: 155,
                   ),
                 ),
               ),
@@ -174,7 +171,7 @@ class ExpenseScreen extends StatelessWidget {
           ),
           Expanded(
             child: ReusableCard(
-              padding: EdgeInsets.all(0),
+              padding: const EdgeInsets.all(0),
               height: 30.0,
               colour: Colors.white,
               cardChild: DailyExpenseList(),
@@ -214,7 +211,7 @@ class AddingButton extends StatelessWidget {
                   padding: EdgeInsets.only(
                     bottom: MediaQuery.of(context).viewInsets.bottom,
                   ),
-                  child: AddExpenseScreen(),
+                  child: const AddExpenseScreen(),
                 ));
       },
     );

@@ -4,6 +4,8 @@ import 'package:fandaniana/widgets/head_tile.dart';
 import 'package:flutter/cupertino.dart';
 
 class DailyExpenseList extends StatelessWidget {
+  const DailyExpenseList({super.key});
+
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
