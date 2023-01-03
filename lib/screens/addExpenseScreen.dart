@@ -167,6 +167,7 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                         ),
                         onChanged: (value) {
                           amount = value as int;
+                          print(value);
                         },
                         validator: (value) {
                           if (value == null || value.isEmpty) {
@@ -185,11 +186,15 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
             ),
             TextButton.icon(
               onPressed: () {
-                print(selectedTypeExpense?.idTypeExpense);
                 if (_formKey.currentState!.validate()) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('Processing Data')),
                   );
+
+                  print(selectedTypeExpense?.idTypeExpense);
+                  print(designation);
+                  print(price);
+                  print(amount);
                 }
               },
               label: Text(
