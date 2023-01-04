@@ -130,7 +130,7 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                           ),
                         ),
                         onChanged: (value) {
-                          price = value as double;
+                          price = double.parse(value);
                         },
                         validator: (value) {
                           if (value == null || value.isEmpty) {
@@ -166,7 +166,7 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                           ),
                         ),
                         onChanged: (value) {
-                          amount = value as int;
+                          amount = int.parse(value);
                           print(value);
                         },
                         validator: (value) {
@@ -192,9 +192,12 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                   );
 
                   print(selectedTypeExpense?.idTypeExpense);
+                  selectedTypeExpense?.isSelected = false;
                   print(designation);
                   print(price);
                   print(amount);
+
+                  Navigator.pop(context);
                 }
               },
               label: Text(

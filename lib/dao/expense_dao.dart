@@ -131,6 +131,10 @@ class ExpenseDao extends ChangeNotifier {
     notifyListeners();
   }
 
+  void unSelectTypeExpense(TypeExpense type) {
+    type.isSelected = false;
+  }
+
   static int getLastIdOveralls() {
     return overalls[overalls.length - 1].idDailyExpense;
   }
