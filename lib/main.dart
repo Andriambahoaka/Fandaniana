@@ -1,8 +1,10 @@
+import 'package:fandaniana/dao/expense_dao.dart';
 import 'package:fandaniana/screens/dashboardScreen.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -11,8 +13,11 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: SafeArea(child: ExpenseScreen()),
+    return ChangeNotifierProvider(
+      create: (context) => ExpenseDao(),
+      child: const MaterialApp(
+        home: SafeArea(child: ExpenseScreen()),
+      ),
     );
   }
 }

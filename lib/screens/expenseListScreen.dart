@@ -7,7 +7,8 @@ import '../models/expense.dart';
 import '../models/type_expense.dart';
 
 class ExpenseList extends StatelessWidget {
-  const ExpenseList(this.dailyExpense, this.typeExpense, this.totalPrice);
+  const ExpenseList(this.dailyExpense, this.typeExpense, this.totalPrice,
+      {super.key});
 
   final DailyExpense dailyExpense;
   final TypeExpense typeExpense;
@@ -26,7 +27,7 @@ class ExpenseList extends StatelessWidget {
                 const TextSpan(
                     text: 'Date : ',
                     style: TextStyle(fontWeight: FontWeight.bold)),
-                TextSpan(text: '${dailyExpense.date}'),
+                TextSpan(text: dailyExpense.getDateString()),
               ]),
             ),
             Card(

@@ -54,7 +54,8 @@ class DailyExpense {
   }
 
   List<Expense> getListDailyExpense() {
-    return ExpenseDao.expenses
+    ExpenseDao e = ExpenseDao();
+    return e.expenses
         .where((element) => element.idDailyExpense == idDailyExpense)
         .toList();
   }

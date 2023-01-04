@@ -7,12 +7,13 @@ class TypeExpenseList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ExpenseDao expenseDao = ExpenseDao();
     return ListView.builder(
       itemBuilder: (context, index) {
-        final type = ExpenseDao.getListExpenseCard()[index];
+        final type = expenseDao.getListExpenseCard()[index];
         return type;
       },
-      itemCount: ExpenseDao.typeExpenseCount,
+      itemCount: expenseDao.typeExpenseCount,
     );
   }
 }

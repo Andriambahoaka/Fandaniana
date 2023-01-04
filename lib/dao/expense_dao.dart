@@ -1,9 +1,11 @@
+import 'dart:collection';
+import 'dart:math';
+
 import 'package:fandaniana/models/daily_expense.dart';
 import 'package:fandaniana/models/type_expense.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../models/expense.dart';
-import '../models/total_by_typeexpense.dart';
 import '../widgets/type_expense_card.dart';
 
 class ExpenseDao extends ChangeNotifier {
@@ -15,9 +17,11 @@ class ExpenseDao extends ChangeNotifier {
   static DailyExpense daily2 = DailyExpense(2, moonLanding);
   static DailyExpense daily3 = DailyExpense(3, moonActual);
 
-  List<TypeExpense> typeExpsenseList;
+  late List<TypeExpense> typeExpenseList;
 
-  ExpenseDao(this.typeExpsenseList);
+  ExpenseDao() {
+    checkTodayDate();
+  }
 
   static List<TypeExpense> typeExpenses = [
     TypeExpense(1, 'Food', 'food'),
@@ -34,75 +38,99 @@ class ExpenseDao extends ChangeNotifier {
   //   TotalByTypeExpense(daily3, TypeExpense(6, 'House', 'house'), 600.0),
   // ];
 
-  static List<DailyExpense> overalls = [daily1, daily2, daily3];
+  //static List<DailyExpense> overalls = [daily1, daily2, daily3];
+  final List<DailyExpense> _overalls = [];
 
-  static List<Expense> expenses = [
-    Expense(
-        idExpense: 1,
-        idDailyExpense: 1,
-        typeExpense: TypeExpense(1, 'Food', 'food'),
-        designation: "Nem",
-        unitPrice: 300.0,
-        amount: 3),
-    Expense(
-        idExpense: 1,
-        idDailyExpense: 1,
-        typeExpense: TypeExpense(1, 'Food', 'food'),
-        designation: "Sandwich",
-        unitPrice: 1000.0,
-        amount: 1),
-    Expense(
-        idExpense: 1,
-        idDailyExpense: 2,
-        typeExpense: TypeExpense(2, 'Car', 'car'),
-        designation: "Gasoil",
-        unitPrice: 15000.0,
-        amount: 1),
-    Expense(
-        idExpense: 1,
-        idDailyExpense: 2,
-        typeExpense: TypeExpense(2, 'Car', 'car'),
-        designation: "Gasoil",
-        unitPrice: 100.0,
-        amount: 1),
-    Expense(
-        idExpense: 1,
-        idDailyExpense: 2,
-        typeExpense: TypeExpense(6, 'House', 'house'),
-        designation: "Jirama",
-        unitPrice: 20000.0,
-        amount: 1),
-    Expense(
-        idExpense: 1,
-        idDailyExpense: 2,
-        typeExpense: TypeExpense(6, 'House', 'house'),
-        designation: "Jirama",
-        unitPrice: 20000.0,
-        amount: 1),
-    Expense(
-        idExpense: 1,
-        idDailyExpense: 2,
-        typeExpense: TypeExpense(6, 'House', 'house'),
-        designation: "Jirama",
-        unitPrice: 20000.0,
-        amount: 1),
-    Expense(
-        idExpense: 1,
-        idDailyExpense: 3,
-        typeExpense: TypeExpense(1, 'Food', 'food'),
-        designation: "Karoty",
-        unitPrice: 300.0,
-        amount: 3),
-    Expense(
-        idExpense: 1,
-        idDailyExpense: 3,
-        typeExpense: TypeExpense(1, 'House', 'house'),
-        designation: "Mixeur",
-        unitPrice: 10000.0,
-        amount: 1),
-  ];
+  List<DailyExpense> get overalls {
+    return _overalls;
+  }
 
-  static List<TypeExpenseCard> getListExpenseCard() {
+  // UnmodifiableListView<DailyExpense> get overalls {
+  //   return UnmodifiableListView(_overalls);
+  // }
+
+  final List<Expense> _expenses = [];
+
+  List<Expense> get expenses {
+    return _expenses;
+  }
+
+  // static List<Expense> expenses = [
+  //   Expense(
+  //       idExpense: 1,
+  //       idDailyExpense: 1,
+  //       typeExpense: TypeExpense(1, 'Food', 'food'),
+  //       designation: "Nem",
+  //       unitPrice: 300.0,
+  //       amount: 3),
+  //   Expense(
+  //       idExpense: 1,
+  //       idDailyExpense: 1,
+  //       typeExpense: TypeExpense(1, 'Food', 'food'),
+  //       designation: "Sandwich",
+  //       unitPrice: 1000.0,
+  //       amount: 1),
+  //   Expense(
+  //       idExpense: 1,
+  //       idDailyExpense: 2,
+  //       typeExpense: TypeExpense(2, 'Car', 'car'),
+  //       designation: "Gasoil",
+  //       unitPrice: 15000.0,
+  //       amount: 1),
+  //   Expense(
+  //       idExpense: 1,
+  //       idDailyExpense: 2,
+  //       typeExpense: TypeExpense(2, 'Car', 'car'),
+  //       designation: "Gasoil",
+  //       unitPrice: 100.0,
+  //       amount: 1),
+  //   Expense(
+  //       idExpense: 1,
+  //       idDailyExpense: 2,
+  //       typeExpense: TypeExpense(6, 'House', 'house'),
+  //       designation: "Jirama",
+  //       unitPrice: 20000.0,
+  //       amount: 1),
+  //   Expense(
+  //       idExpense: 1,
+  //       idDailyExpense: 2,
+  //       typeExpense: TypeExpense(6, 'House', 'house'),
+  //       designation: "Jirama",
+  //       unitPrice: 20000.0,
+  //       amount: 1),
+  //   Expense(
+  //       idExpense: 1,
+  //       idDailyExpense: 2,
+  //       typeExpense: TypeExpense(6, 'House', 'house'),
+  //       designation: "Jirama",
+  //       unitPrice: 20000.0,
+  //       amount: 1),
+  //   Expense(
+  //       idExpense: 1,
+  //       idDailyExpense: 3,
+  //       typeExpense: TypeExpense(1, 'Food', 'food'),
+  //       designation: "Karoty",
+  //       unitPrice: 300.0,
+  //       amount: 3),
+  //   Expense(
+  //       idExpense: 1,
+  //       idDailyExpense: 3,
+  //       typeExpense: TypeExpense(1, 'House', 'house'),
+  //       designation: "Mixeur",
+  //       unitPrice: 10000.0,
+  //       amount: 1),
+  // ];
+
+  void addNewDailyExpense(DailyExpense dailyExpense) {
+    _overalls.add(dailyExpense);
+  }
+
+  void addNewExpense(Expense expense) {
+    _expenses.add(expense);
+    notifyListeners();
+  }
+
+  List<TypeExpenseCard> getListExpenseCard() {
     List<TypeExpenseCard> result = [];
     for (var element in typeExpenses) {
       result.add(TypeExpenseCard(element));
@@ -110,16 +138,16 @@ class ExpenseDao extends ChangeNotifier {
     return result;
   }
 
-  static List<Expense> getListDailyExpenseByType(
+  List<Expense> getListDailyExpenseByType(
       int idDaily, TypeExpense typeExpense) {
-    return expenses
+    return _expenses
         .where((element) =>
             element.idDailyExpense == idDaily &&
             element.typeExpense.idTypeExpense == typeExpense.idTypeExpense)
         .toList();
   }
 
-  static int get typeExpenseCount {
+  int get typeExpenseCount {
     return typeExpenses.length;
   }
 
@@ -135,17 +163,34 @@ class ExpenseDao extends ChangeNotifier {
     type.isSelected = false;
   }
 
-  static int getLastIdOveralls() {
-    return overalls[overalls.length - 1].idDailyExpense;
+  int getLastIdOveralls() {
+    return _overalls[overalls.length - 1].idDailyExpense;
   }
 
-  static checkTodayDate() {
-    DateTime lastDate = overalls[overalls.length - 1].date;
-    DateTime now = DateTime.now();
-    if (!lastDate.isSameDate(now)) {
-      int id = getLastIdOveralls() + 1;
-      DailyExpense newDaily = DailyExpense(id, now);
-      overalls.add(newDaily);
+  int getLastIdExpenses() {
+    if (_expenses.isEmpty) {
+      return 0;
+    } else {
+      return _expenses[_expenses.length - 1].idExpense;
     }
+  }
+
+  void checkTodayDate() {
+    DateTime now = DateTime.now();
+
+    if (_overalls.isNotEmpty) {
+      DateTime lastDate = _overalls[overalls.length - 1].date;
+
+      if (!lastDate.isSameDate(now)) {
+        int id = getLastIdOveralls() + 1;
+        DailyExpense newDaily = DailyExpense(id, now);
+        _overalls.add(newDaily);
+      }
+    } else {
+      DailyExpense newDaily = DailyExpense(1, now);
+      _overalls.add(newDaily);
+    }
+
+    notifyListeners();
   }
 }

@@ -1,8 +1,11 @@
 import 'package:fandaniana/dao/expense_dao.dart';
+import 'package:fandaniana/models/daily_expense.dart';
+import 'package:fandaniana/models/expense.dart';
 import 'package:fandaniana/utilities/constants.dart';
 import 'package:fandaniana/utilities/utility.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 
 import '../models/type_expense.dart';
 import '../widgets/type_expense_card.dart';
@@ -23,6 +26,8 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
   int amount = 0;
   int selectedIndex = -1;
 
+  ExpenseDao expenseDao = ExpenseDao();
+
   final _formKey = GlobalKey<FormState>();
 
   List<TypeExpenseCard> getListExpenseCard() {
@@ -34,7 +39,7 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
           selectedTypeExpense = element;
           setState(() {
             selectedIndex = typeExpenses.indexOf(element);
-            ExpenseDao(typeExpenses).selectType(element);
+            ExpenseDao().selectType(element);
           });
         },
       ));
@@ -187,15 +192,28 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
             TextButton.icon(
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
-                  ScaffoldMessenger.of(context).showSnackBar(
+                  /*  ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('Processing Data')),
-                  );
+                  );*/
 
                   print(selectedTypeExpense?.idTypeExpense);
                   selectedTypeExpense?.isSelected = false;
                   print(designation);
                   print(price);
                   print(amount);
+
+                  int idExpense = expenseDao.getLastIdExpenses() + 1;
+                  Expense expense = Expense(
+                      idExpense: idExpense,
+                      idDailyExpense: expenseDao.getLastIdExpenses(),
+                      typeExpense: selectedTypeExpense!,
+                      designation: designation,
+                      unitPrice: price,
+                      amount: amount);
+
+                  expenseDao.addNewExpense(expense);
+                  Provider.of<ExpenseDao>(context, listen: false)
+                      .addNewExpense(expense);
 
                   Navigator.pop(context);
                 }

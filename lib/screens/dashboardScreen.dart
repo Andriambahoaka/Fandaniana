@@ -174,7 +174,7 @@ class ExpenseScreen extends StatelessWidget {
               padding: const EdgeInsets.all(0),
               height: 30.0,
               colour: Colors.white,
-              cardChild: DailyExpenseList(),
+              cardChild: const DailyExpenseList(),
             ),
           ),
         ],
