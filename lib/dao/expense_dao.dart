@@ -4,11 +4,31 @@ import 'dart:math';
 import 'package:fandaniana/models/daily_expense.dart';
 import 'package:fandaniana/models/type_expense.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:hive/hive.dart';
 
 import '../models/expense.dart';
 import '../widgets/type_expense_card.dart';
 
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:path_provider/path_provider.dart';
+
 class ExpenseDao extends ChangeNotifier {
+  findCollection() async {
+    final collection = await BoxCollection.open(
+      'MyFirstFluffyBox', // Name of your database
+      {'cats', 'dogs'}, // Names of your boxes
+      path:
+          './', // Path where to store your boxes (Only used in Flutter / Dart IO)
+      // Key to encrypt your boxes (Only used in Flutter / Dart IO)
+    );
+    return collection;
+  }
+
+  void saveExpense(Expense expense) {}
+
+  void findAllExpense() {}
+
   static DateTime moonParting = DateTime.parse('2022-12-27 20:18:04Z');
   static DateTime moonLanding = DateTime.parse('2022-12-28 20:18:04Z');
   static DateTime moonActual = DateTime.parse('2022-12-29 20:18:04Z');
