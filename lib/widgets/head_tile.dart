@@ -12,7 +12,7 @@ class HeadTile extends StatelessWidget {
     return Container(
       color: Colors.black12,
       child: ListTile(
-        leading: Text(
+        leading: const Text(
           '',
         ),
         title: Text(
