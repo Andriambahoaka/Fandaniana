@@ -18,7 +18,7 @@ class TotalByTypeExpenseList extends StatelessWidget {
       },
       itemCount: totalByTypeList.length,
       shrinkWrap: true,
-      physics: ClampingScrollPhysics(),
+      physics: const ClampingScrollPhysics(),
     );
   }
 }
