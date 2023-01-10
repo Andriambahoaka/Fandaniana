@@ -1,5 +1,4 @@
 import 'package:fandaniana/dao/expense_dao.dart';
-import 'package:fandaniana/models/daily_expense.dart';
 import 'package:fandaniana/models/expense.dart';
 import 'package:fandaniana/utilities/constants.dart';
 import 'package:fandaniana/utilities/utility.dart';

@@ -4,7 +4,6 @@ import 'package:fandaniana/utilities/utility.dart';
 
 import 'expense.dart';
 import 'total_by_typeexpense.dart';
-import 'package:intl/intl.dart';
 
 class DailyExpense {
   DailyExpense(this.idDailyExpense, this.date);
