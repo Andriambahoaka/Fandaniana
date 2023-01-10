@@ -32,7 +32,7 @@ class ExpenseScreen extends StatelessWidget {
                     height: 15,
                   ),
                   elevation: 56,
-                  style: KSummaryLabelStyle,
+                  style: kSummaryLabelStyle,
                   underline: const SizedBox(),
                   onChanged: (String? value) {},
                   items: list.map<DropdownMenuItem<String>>((String value) {
@@ -169,12 +169,12 @@ class ExpenseScreen extends StatelessWidget {
               ),
             ],
           ),
-          Expanded(
+          const Expanded(
             child: ReusableCard(
-              padding: const EdgeInsets.all(0),
+              padding: EdgeInsets.all(0),
               height: 30.0,
               colour: Colors.white,
-              cardChild: const DailyExpenseList(),
+              cardChild: DailyExpenseList(),
             ),
           ),
         ],

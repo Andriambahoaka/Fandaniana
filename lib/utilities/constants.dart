@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-const KSummaryLabelStyle = TextStyle(
+const kSummaryLabelStyle = TextStyle(
   fontSize: 35.0,
   color: Colors.black,
 // fontWeight: FontWeight.bold,

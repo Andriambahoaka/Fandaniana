@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 
 class ReusableCard extends StatelessWidget {
-  ReusableCard(
-      {required this.colour,
+  const ReusableCard(
+      {super.key,
+      required this.colour,
       required this.cardChild,
       required this.height,
       required this.padding});

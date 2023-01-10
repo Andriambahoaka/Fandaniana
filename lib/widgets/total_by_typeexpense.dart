@@ -5,7 +5,7 @@ import '../dao/expense_dao.dart';
 import '../models/total_by_typeexpense.dart';
 
 class TotalByTypeExpenseList extends StatelessWidget {
-  TotalByTypeExpenseList(this.totalByTypeList);
+  TotalByTypeExpenseList(this.totalByTypeList, {super.key});
 
   List<TotalByTypeExpense> totalByTypeList;
 
