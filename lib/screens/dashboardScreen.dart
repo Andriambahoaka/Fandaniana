@@ -194,11 +194,11 @@ class AddingButton extends StatelessWidget {
       child: Container(
         width: 60,
         height: 60,
-        child: Icon(
+        decoration: kFloatingButtonDecoration,
+        child: const Icon(
           Icons.add,
           size: 34,
         ),
-        decoration: kFloatingButtonDecoration,
       ),
       onPressed: () {
         showModalBottomSheet(

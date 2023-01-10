@@ -1,10 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../utilities/constants.dart';
 
 class HeadTile extends StatelessWidget {
-  HeadTile(this.date, this.total);
+  const HeadTile(this.date, this.total, {super.key});
   final String date;
   final double total;
 
