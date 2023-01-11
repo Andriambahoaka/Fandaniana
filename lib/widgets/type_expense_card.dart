@@ -1,10 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../dao/expense_dao.dart';
 import '../models/type_expense.dart';
 import '../utilities/utility.dart';
-import 'my_tooltip.dart';
 
 class TypeExpenseCard extends StatelessWidget {
   final TypeExpense typeExpense;

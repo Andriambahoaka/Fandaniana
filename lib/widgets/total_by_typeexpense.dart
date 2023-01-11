@@ -1,7 +1,6 @@
 import 'package:fandaniana/widgets/total_bytype_tile.dart';
 import 'package:flutter/cupertino.dart';
 
-import '../dao/expense_dao.dart';
 import '../models/total_by_typeexpense.dart';
 
 class TotalByTypeExpenseList extends StatelessWidget {

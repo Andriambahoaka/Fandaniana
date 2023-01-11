@@ -171,7 +171,7 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                         ),
                         onChanged: (value) {
                           amount = int.parse(value);
-                          print(value);
+                          // print(value);
                         },
                         validator: (value) {
                           if (value == null || value.isEmpty) {
@@ -195,11 +195,11 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                     const SnackBar(content: Text('Processing Data')),
                   );*/
 
-                  print(selectedTypeExpense?.idTypeExpense);
+                  //print(selectedTypeExpense?.idTypeExpense);
                   selectedTypeExpense?.isSelected = false;
-                  print(designation);
-                  print(price);
-                  print(amount);
+                  // print(designation);
+                  // print(price);
+                  //print(amount);
 
                   int idExpense = expenseDao.getLastIdExpenses() + 1;
                   Expense expense = Expense(

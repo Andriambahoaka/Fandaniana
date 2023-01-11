@@ -1,5 +1,4 @@
 import 'package:fandaniana/dao/expense_dao.dart';
-import 'package:fandaniana/widgets/type_expense_card.dart';
 import 'package:flutter/cupertino.dart';
 
 class TypeExpenseList extends StatelessWidget {
