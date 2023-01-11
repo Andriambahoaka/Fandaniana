@@ -5,7 +5,7 @@ class ToolTipCard extends StatelessWidget {
   final Widget child;
   final String message;
 
-  ToolTipCard({required this.message, required this.child});
+  const ToolTipCard({required this.message, required this.child});
 
   @override
   Widget build(BuildContext context) {
